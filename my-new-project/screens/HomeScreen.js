@@ -40,7 +40,12 @@ export default function HomeScreen() {
           </View>
 
           <Text style={styles.getStartedText}>
+<<<<<<< HEAD
           Daylan loves getting meat drunk on KBBQ and rolling at madeon
+=======
+            HELLO WORLD!
+            {/* Change this text and your app will automatically reload. */}
+>>>>>>> f84d311d0b327b4c8951c30ea80f78c5894914dd
           </Text>
         </View>
 
