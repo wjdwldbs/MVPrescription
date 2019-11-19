@@ -15,6 +15,8 @@ const DrugSchema = new mongoose.Schema({
     sideEffect: { type: String, default: ()=>("") },
 
     username: { type: String, default: ()=>("") }, //name of the user
+    period: { type: String, default: ()=>("") }, //recording the period of user taking this drug
+    dose: { type: String, default: ()=>("") }, //recording the dose of user taking this drug
   }, { collection: "Drug" }
 );
 
