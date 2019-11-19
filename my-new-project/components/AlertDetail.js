@@ -17,16 +17,19 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 //   }
 // }
     const AlertDetail = (props) => (
-      <View>
+      <View style={{margin: '5%'}}>
         {props.data.map((med, i) => (
-          <View key={i}>
-            <Image 
-            style={{width: 50, height: 50}} 
-            source={{uri:med.img}} 
-            />
-            <Text>{med.medName}</Text>
-            <Text>{med.strength}</Text>
-            <Text>{med.direction}</Text>
+          <View style={{margin:'2%'}} key={i}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+              <Image 
+              style={{width: 50, height: 50}} 
+              source={{uri:med.img}} 
+              />
+              <Text> {med.medName}</Text>
+              <Text> {med.strength}</Text>
+            </Text>
+
+            <Text style={{fontSize: 15}}>{med.direction}</Text>
           </View>
         ))}
       </View>
