@@ -1,33 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-// export default class AlertDetail extends Component {
-//   render(){
-//     return(
-//       <View>
-
-//         <Text>
-//           <Image style={{width: 50, height: 50}} source={{uri:'https://www.additudemag.com/wp-content/uploads/2017/02/adderall_xr_25mg.jpg'}}/>
-//         </Text>
-
-//         <Text>med2</Text>
-//         <Text>med3</Text>
-//       </View>
-//     );
-//   }
-// }
     const AlertDetail = (props) => (
       <View>
         {props.data.map((med, i) => (
-          <View key={i}>
-            <Image 
-            style={{width: 50, height: 50}} 
-            source={{uri:med.img}} 
+          <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}}>
+            <Image
+            style={{width: 100, height: 100}}
+            source={{uri:med.img}}
             />
-            <Text>{med.medName}</Text>
-            <Text>{med.strength}</Text>
-            <Text>{med.direction}</Text>
-          </View>
+            <View style={{width: 100, height: 100, flex:1, flexDirection: 'column'}}>
+              <Text style={{fontSize: 18, fontWeight: 'bold', textDecorationLine:'underline'}}>{med.medName}: {med.strength}</Text>
+              <Text style={{fontSize:16}}>{med.direction}</Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </View>
     );
