@@ -32,5 +32,11 @@
     "babel-preset-expo": "^7.0.0",
     "jest-expo": "^35.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "my-new-project",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

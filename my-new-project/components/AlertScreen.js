@@ -9,7 +9,11 @@ const styles =StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     textAlign: 'center'
+  },
+  alert: {
+    
   }
+
 })
 
 export default class AlertScreen extends Component {
