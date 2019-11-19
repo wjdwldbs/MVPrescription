@@ -28,7 +28,13 @@ export default function App(props) {
     );
   }
 
+  // return (
+  //   <View>
+  //      <Text>Hello, world!</Text>
+  //   </View>
+  // );
 }
+
 
 async function loadResourcesAsync() {
   await Promise.all([
