@@ -1,25 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "mvprescription",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MVPhub/MVPrescription.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MVPhub/MVPrescription/issues"
-  },
-  "homepage": "https://github.com/MVPhub/MVPrescription#readme",
-  "dependencies": {
-    "expo": "^35.0.1"
-=======
   "name": "mvp-server",
   "version": "1.0.0",
   "description": "database service for prescription manager",
@@ -41,6 +20,5 @@
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
->>>>>>> 4d9f3a07f0bc30c9c1cf88a96f52d9a283fb4213
   }
 }
