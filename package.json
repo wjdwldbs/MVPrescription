@@ -16,7 +16,9 @@
     "mongoose": "^5.7.7",
     "nodemon": "^1.19.4",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "firebase": "^7.4.0",
+    "firebase-admin": "^8.7.0"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
