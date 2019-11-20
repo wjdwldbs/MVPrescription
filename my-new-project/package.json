@@ -15,6 +15,7 @@
     "@expo/samples": "~3.0.3",
     "@expo/vector-icons": "^10.0.3",
     "@react-navigation/web": "^1.0.0-alpha.9",
+    "axios": "^0.19.0",
     "expo": "^35.0.0",
     "expo-asset": "^7.0.0",
     "expo-constants": "^7.0.0",
@@ -32,5 +33,11 @@
     "babel-preset-expo": "^7.0.0",
     "jest-expo": "^35.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "my-new-project",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
