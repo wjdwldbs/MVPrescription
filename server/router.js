@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const db = require("../database/index");
 const {user,drug} = require("../database/models");
 
 const lazyFun1 = (err,data,res,code)=>{
@@ -15,7 +16,7 @@ const lazyFun2 = (err,res,code)=>{
 
 router.get('/users/all',(req,res)=>{
   //find all users in the list
-  user.find({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
+  user.find({},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 
 router.get('/user/:name',(req,res)=>{
