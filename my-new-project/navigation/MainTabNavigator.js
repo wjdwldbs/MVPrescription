@@ -73,10 +73,10 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack
 }, {tabBarOptions: {
-   activeTintColor: '#00bbee',
-  inactiveTintColor: '#ccffff',
-  inactiveBackgroundColor: '#0099ff',
-  activeBackgroundColor: '#e6ffff',
+   activeTintColor: '#ccffff',
+  inactiveTintColor: '#00bbee',
+  inactiveBackgroundColor: '#e6ffff',
+  activeBackgroundColor: '#0099ff',
   labelStyle: {
     fontSize: 25,
   },
