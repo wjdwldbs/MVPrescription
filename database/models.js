@@ -9,8 +9,9 @@ const UserSchema = new mongoose.Schema({
 const DrugSchema = new mongoose.Schema({
     // id: Number,
     name: { type: String, default: ()=>("") }, //name of the drug
+    generic: { type: String, default: ()=>("") },
     strength: { type: String, default: ()=>("") },
-    direction: { type: String, default: ()=>("") },
+    direction: { type: String, default: ()=>("") }, //how to use drug
     note: { type: String, default: ()=>("") },
     sideEffect: { type: String, default: ()=>("") },
 
