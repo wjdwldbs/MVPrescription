@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS } from 'react-native';
 
 export default class AlertDetail extends Component {
   constructor(props){
@@ -15,8 +15,15 @@ export default class AlertDetail extends Component {
       time: [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       days: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90],
       switch1Value: false,
-      switch2Value: false
+      switch2Value: false,
+      chosenDate: new Date()
     }
+
+    this.setDate = this.setDate.bind(this);
+  }
+
+  setDate(newDate) {
+    this.setState({chosenDate: newDate});
   }
 
   toggleSwitch1 = (value) => {
@@ -101,14 +108,13 @@ export default class AlertDetail extends Component {
                 </View>
               </View>
 
-              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 300}}>
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 250}}>
                 <Text style={{marginHorizontal: 10}}>ON</Text>
                 <Switch onValueChange={this.toggleSwitch1} value={this.state.switch1Value}/>
                 <Text style={{marginHorizontal: 10}}>OFF</Text>
               </View>
 
-
-              <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+              {/* <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
                 <Text style={{marginBottom: 0, fontSize: 35}}>Set Refill Med Reminder</Text>
 
                 <View style={{height: 100, width: 'auto'}}>
@@ -121,6 +127,19 @@ export default class AlertDetail extends Component {
               </View>
 
               <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 300}}>
+                <Text style={{marginHorizontal: 10}}>ON</Text>
+                <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
+                <Text style={{marginHorizontal: 10}}>OFF</Text>
+              </View> */}
+
+              <View style={{flex: 1, justifyContent: 'center'}}>
+                <Text style={{marginBottom: 0, fontSize: 35, textAlign: 'center'}}>Set Refill Med Reminder</Text>
+                <View style={{width: '100%'}}>
+                  <DatePickerIOS date={this.state.chosenDate} onDateChange={this.setDate}/>
+                </View>
+              </View>
+
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 100}}>
                 <Text style={{marginHorizontal: 10}}>ON</Text>
                 <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
                 <Text style={{marginHorizontal: 10}}>OFF</Text>
