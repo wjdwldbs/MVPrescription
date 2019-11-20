@@ -13,7 +13,6 @@ export default function LinksScreen() {
        */}
       {/* <ExpoLinksView /> */}
       <AlertScreen/>
-      <Queries/>
     </ScrollView>
   );
 }
