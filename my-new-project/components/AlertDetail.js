@@ -114,24 +114,6 @@ export default class AlertDetail extends Component {
                 <Text style={{marginHorizontal: 10}}>OFF</Text>
               </View>
 
-              {/* <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                <Text style={{marginBottom: 0, fontSize: 35}}>Set Refill Med Reminder</Text>
-
-                <View style={{height: 100, width: 'auto'}}>
-                  <Text style={{marginTop: "10%", fontSize: 25}}>Every</Text>
-                  <Picker selectedValue={this.state.selectedDay} onValueChange={(day) => this.setState({selectedDay: day})}>
-                    {getDays}
-                  </Picker>
-                  <Text style={{fontSize: 25}}>Day(s)</Text>
-                </View>
-              </View>
-
-              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 300}}>
-                <Text style={{marginHorizontal: 10}}>ON</Text>
-                <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
-                <Text style={{marginHorizontal: 10}}>OFF</Text>
-              </View> */}
-
               <View style={{flex: 1, justifyContent: 'center'}}>
                 <Text style={{marginBottom: 0, fontSize: 35, textAlign: 'center'}}>Set Refill Med Reminder</Text>
                 <View style={{width: '100%'}}>
@@ -153,6 +135,25 @@ export default class AlertDetail extends Component {
     );
   }
 }
+
+
+              {/* <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+                <Text style={{marginBottom: 0, fontSize: 35}}>Set Refill Med Reminder</Text>
+
+                <View style={{height: 100, width: 'auto'}}>
+                  <Text style={{marginTop: "10%", fontSize: 25}}>Every</Text>
+                  <Picker selectedValue={this.state.selectedDay} onValueChange={(day) => thdis.setState({selectedDay: day})}>
+                    {getDays}
+                  </Picker>
+                  <Text style={{fontSize: 25}}>Day(s)</Text>
+                </View>
+              </View>
+
+              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 300}}>
+                <Text style={{marginHorizontal: 10}}>ON</Text>
+                <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
+                <Text style={{marginHorizontal: 10}}>OFF</Text>
+              </View> */}
 
 
 
