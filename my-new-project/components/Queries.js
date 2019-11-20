@@ -13,7 +13,24 @@ import {
   Button,
   TextInput
 } from 'react-native';
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 30,
+    textAlign: 'left'
+  },
+  input: {
+    fontSize: 30,
+    textAlign: 'center'
+  },
+  button: {
+    height:50,
+    width: 250,
+    backgroundColor: '#33ccff',
+    color: 'white',
 
+  }
+
+})
 export default class Queries extends React.Component {
 
   constructor(props) {
@@ -56,31 +73,36 @@ export default class Queries extends React.Component {
   render() {
     var dosage = [];
     return (
-    <View>
-      <Text>Add a Medication</Text>
+    <View >
+      <Text style={styles.text}>Add a Medication</Text>
       <TextInput
+      style={styles.input}
         placeholder="Type Here"
         onChangeText={(text) => this.setState({query: text})}
         value={this.state.query}
         inlineImageLeft='search_icon'
         />
-      <Text>Strength</Text>
+      <Text style={styles.text}>Strength</Text>
       <TextInput
+      style={styles.input}
         placeholder="Type Here"
         onChangeText={(text) => this.setState({strength: text})}
         />
-      <Text>Add Direction</Text>
+      <Text style={styles.text}>Add Direction</Text>
       <TextInput
+      style={styles.input}
         placeholder="Type Here"
         onChangeText={(text) => this.setState({direction: text})}
         />
-      <Text>Add Notes</Text>
+      <Text style={styles.text}>Add Notes</Text>
       <TextInput
+      style={styles.input}
         placeholder="Type Here"
         onChangeText={(text) => this.setState({note: text})}
         />
-  <Button onPress={() => this.getMedication(this.state.query)} title="click"/>
-  <Button onPress={() => console.log(this.state)} title="click"/>
+  <View style={styles.button}>
+  <Button color='white' title="Submit"  onPress={() => this.getMedication(this.state.query)} />
+  </View>
     </View>
     );
   }
