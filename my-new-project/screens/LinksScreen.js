@@ -1,8 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+// import { ExpoLinksView } from '@expo/samples';
 import AlertScreen from '../components/AlertScreen.js';
-import Queries from '../components/Queries.js'
 
 export default function LinksScreen() {
   return (
@@ -13,7 +12,6 @@ export default function LinksScreen() {
        */}
       {/* <ExpoLinksView /> */}
       <AlertScreen/>
-      <Queries/>
     </ScrollView>
   );
 }
