@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker } from 'react-native';
-//import SetAlerts from './SetAlerts.js';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, ScrollView } from 'react-native';
 
 export default class AlertDetail extends Component {
   constructor(props){
@@ -34,9 +33,10 @@ export default class AlertDetail extends Component {
     });
 
     return(
-      <View style={{margin: '5%'}}>
+      <View>
         {this.props.data.map((med, i) => (
           <View key={i}>
+            <View style={{marginBottom: 15}}>
             <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}}>
               <Image style={{width: 100, height: 100}} source={{uri:med.img}}/>
               <View style={{width: 100, height: 100, flex:1, flexDirection: 'column'}}>
@@ -47,11 +47,17 @@ export default class AlertDetail extends Component {
               </View>
             </TouchableOpacity>
 
+            <TouchableHighlight onPress={() => this.setState({modalVisible: true})}>
+              <Text style={{fontWeight: 'bold', fontSize: 20}}>Set Alerts</Text>
+            </TouchableHighlight>
+            </View>
+
             <Modal animationType="slide" transparent={false} visible={this.state.modalVisible} onRequestClose={() => {Alert.alert('Modal has been closed.');}}>             
               <View style={{marginTop: 22}}>
 
-                  <TouchableHighlight onPress={() => this.setState({modalVisible: !this.state.modalVisible})} > 
-                    <Text style={{marginTop:'2%', fontSize: 15, fontWeight: 'bold'}}>Close</Text>
+                  <TouchableHighlight style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, marginTop: 10}} 
+                  onPress={() => this.setState({modalVisible: !this.state.modalVisible})} > 
+                    <Text style={{fontSize: 35, fontWeight: 'bold'}}>Close</Text>
                   </TouchableHighlight>
 
                 <Text style={{marginBottom: 0, fontSize: 35}}>Set Daily Med Reminder</Text>
@@ -72,14 +78,11 @@ export default class AlertDetail extends Component {
 
               </View>
             </Modal>  
-
-            <TouchableHighlight onPress={() => this.setState({modalVisible: true})}>
-              <Text>Set Alerts</Text>
-            </TouchableHighlight>
-
           </View>
         ))}
       </View>
+      
+     
     );
   }
 }
