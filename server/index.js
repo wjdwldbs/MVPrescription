@@ -19,16 +19,4 @@ app.get("/server/test", (req, res) => {
 
 
 
-// app.get(`https://api.fda.gov/drug/label.json?search=description::/para?drug=${name}&limit=1`,(req, res) => {
-
-//   var name = req.query.name
-//     if (err) {
-//       req.status(404).send(err)
-//     } else {
-//       req.status(200).send(req.body)
-//     }
-//   })
-
-
-
 app.use("/mvp", router);

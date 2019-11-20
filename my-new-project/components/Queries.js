@@ -52,21 +52,37 @@ export default class Queries extends React.Component {
     this.getMedication = this.getMedication.bind(this)
     this.getImage = this.getImage.bind(this)
     this.addMedication = this.addMedication.bind(this)
+    this.optionalPatientInfo = this.optionalPatientInfo.bind(this)
+  }
+
+  optionalPatientInfo() {
+
+    if (this.state.medication.results[0].information_for_patients) {
+      this.setState({
+        patientInfo: this.state.medication.results[0].information_for_patients[0]
+      })
+    } else if (!this.state.medication.results[0].information_for_patients) {
+      this.setState({
+        patientInfo: ''
+      })
+    }
   }
 
   getMedication(query) {
     axios.get(`https://api.fda.gov/drug/label.json?search=description:${query}&limit=1`)
     .then(res => {
       this.setState({
-        //medication: res.data,
+        medication: res.data,
         sideEffect: res.data.results[0].adverse_reactions[0],
-        patientInfo: res.data.results[0].information_for_patients[0],
+        //patientInfo: res.data.results[0].information_for_patients[0],
         name: query
       })
     })
+    .then(() => this.optionalPatientInfo())
     .then(() => this.getImage(query))
     .catch(err => console.log(err))
   }
+
 
   getImage(drugQuery) {
     axios.get(`https://rximage.nlm.nih.gov/api/rximage/1/rxnav?name=${drugQuery}&rLimit=1`)
@@ -86,7 +102,8 @@ export default class Queries extends React.Component {
       strength: this.state.strength,
       direction: this.state.direction,
       note: this.state.note,
-      sideEffects: this.state.sideEffect
+      sideEffect: this.state.sideEffect,
+      username: this.state.patientInfo
     })
   }
 
@@ -122,9 +139,9 @@ export default class Queries extends React.Component {
         placeholder="Type Here"
         onChangeText={(text) => this.setState({note: text})}
         />
-  <Button onPress={() => this.getMedication(this.state.query)} title="click"/>
-  <Button onPress={() => console.log(this.state)} title="click"/>
-  <Button onPress={() => this.addMedication()} title="click"/>
+  <Button onPress={() => this.getMedication(this.state.query)} title="getmedstraight"/>
+  <Button onPress={() => this.getMedication(this.state)} title="state"/>
+  <Button onPress={() => this.addMedication()} title="add"/>
     </View>
     );
   }
