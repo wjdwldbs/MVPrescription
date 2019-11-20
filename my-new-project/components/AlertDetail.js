@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, ScrollView } from 'react-native';
+//test
 
 export default class AlertDetail extends Component {
   constructor(props){
