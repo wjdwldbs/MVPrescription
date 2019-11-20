@@ -51,7 +51,7 @@ export default class Queries extends React.Component {
 
     this.getMedication = this.getMedication.bind(this)
     this.getImage = this.getImage.bind(this)
-    //this.addMedication = this.addMedication.bind(this)
+    this.addMedication = this.addMedication.bind(this)
   }
 
   getMedication(query) {
@@ -78,16 +78,17 @@ export default class Queries extends React.Component {
     })
   }
 
-  // addMedication() {
-  //   axios.post('/drug', {
-  //     name: this.state.query,
-  //     generic: this.state.generic
-  //     strength: this.state.strength,
-  //     direction: this.state.direction,
-  //     note: this.state.note,
-  //     sideEffects: this.state.sideEffect
-  //   })
-  // }
+  addMedication() {
+    axios.post(`http://localhost:3000/mvp/drug`, {
+      name: this.state.query,
+      generic: this.state.generic,
+      imgUrl: this.state.image,
+      strength: this.state.strength,
+      direction: this.state.direction,
+      note: this.state.note,
+      sideEffects: this.state.sideEffect
+    })
+  }
 
 
 
@@ -122,7 +123,8 @@ export default class Queries extends React.Component {
         onChangeText={(text) => this.setState({note: text})}
         />
   <Button onPress={() => this.getMedication(this.state.query)} title="click"/>
-  <Button onPress={() => console.log(this.state.sideEffect)} title="click"/>
+  <Button onPress={() => console.log(this.state)} title="click"/>
+  <Button onPress={() => this.addMedication()} title="click"/>
     </View>
     );
   }

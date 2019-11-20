@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {user,drug} = require("../database/models");
 
 const lazyFun1 = (err,data,res,code)=>{
+  console.log(data)
   if(err) res.status(400).send(err);
   else if(!data) res.status(404).send("item not found");
   else res.status(code).send(data);
@@ -15,6 +16,7 @@ const lazyFun2 = (err,res,code)=>{
 
 router.get('/users/all',(req,res)=>{
   //find all users in the list
+
   user.find({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 
@@ -46,6 +48,8 @@ router.get('/drug/:name',(req,res)=>{
   drug.find({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 router.post('/drug',(req,res)=>{
+  console.log(req.body)
+  console.log('asdf')
   user.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
 });
 router.put('/drug/:name',(req,res)=>{
