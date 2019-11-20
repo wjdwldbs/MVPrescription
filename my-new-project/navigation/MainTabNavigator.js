@@ -12,28 +12,28 @@ const config = Platform.select({
   default: {},
 });
 
-const HomeStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-  },
-  config
-);
-
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-home`
-          : 'md-home'
-      }
-    />
-  ),
-};
-
-HomeStack.path = '';
+// const HomeStack = createStackNavigator(
+//   {
+//     Home: HomeScreen,
+//   },
+//   config
+// );
+//
+// HomeStack.navigationOptions = {
+//   tabBarLabel: 'Home',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === 'ios'
+//           ? `ios-home`
+//           : 'md-home'
+//       }
+//     />
+//   ),
+// };
+//
+// HomeStack.path = '';
 
 const LinksStack = createStackNavigator(
   {
@@ -61,7 +61,7 @@ const SettingsStack = createStackNavigator(
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Add Meds',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-medkit' : 'md-medkit'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-medkit' : 'md-medkit'}/>
   ),
 };
 
@@ -69,10 +69,22 @@ SettingsStack.path = '';
 
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
+  // HomeStack,
   LinksStack,
   SettingsStack
-});
+}, {tabBarOptions: {
+   activeTintColor: '#ccffff',
+  inactiveTintColor: '#00bbee',
+  inactiveBackgroundColor: '#e6ffff',
+  activeBackgroundColor: '#0099ff',
+  labelStyle: {
+    fontSize: 25,
+  },
+  allowFontScaling:true,
+  style:{
+    height:100
+  }
+}});
 
 
 
