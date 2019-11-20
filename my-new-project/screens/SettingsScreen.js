@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+// import { ExpoConfigView } from '@expo/samples';
 import Queries from '../components/Queries.js'
 
 
