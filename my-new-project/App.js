@@ -6,14 +6,9 @@ import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
-import LoginForm from './components/Login.js/';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  App.loggedIn = false;
-  App.toggleLogin = function() {
-    App.loggedIn = true;
-  }
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -25,17 +20,11 @@ export default function App(props) {
     );
   } else {
     return (
-      // App.loggedIn
-      // ?
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <AppNavigator />
 
       </View>
-      // :
-      // <View>
-      //   <LoginForm loggedIn={App.toggleLogin.bind(this)}/>
-      // </View>
     );
   }
 
