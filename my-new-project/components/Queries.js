@@ -56,7 +56,6 @@ export default class Queries extends React.Component {
   }
 
   optionalPatientInfo() {
-
     if (this.state.medication.results[0].information_for_patients) {
       this.setState({
         patientInfo: this.state.medication.results[0].information_for_patients[0]
@@ -68,13 +67,13 @@ export default class Queries extends React.Component {
     }
   }
 
+
   getMedication(query) {
     axios.get(`https://api.fda.gov/drug/label.json?search=description:${query}&limit=1`)
     .then(res => {
       this.setState({
         medication: res.data,
         sideEffect: res.data.results[0].adverse_reactions[0],
-        //patientInfo: res.data.results[0].information_for_patients[0],
         name: query
       })
     })
@@ -88,12 +87,12 @@ export default class Queries extends React.Component {
     axios.get(`https://rximage.nlm.nih.gov/api/rximage/1/rxnav?name=${drugQuery}&rLimit=1`)
     .then(res => {
       this.setState({
-        image: res.data.nlmRxImages[0].imageUrl,
-        generic: res.data.nlmRxImages[0].name
+        image: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].imageUrl,
+        generic: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].name
       })
     })
   }
-
+//
   addMedication() {
     axios.post(`http://localhost:3000/mvp/drug`, {
       name: this.state.query,
@@ -101,10 +100,11 @@ export default class Queries extends React.Component {
       imgUrl: this.state.image,
       strength: this.state.strength,
       direction: this.state.direction,
-      note: this.state.note,
-      sideEffect: this.state.sideEffect,
-      username: this.state.patientInfo
+      note: this.state.patientInfo,
+      sideEffect: this.state.sideEffect
     })
+    .then(() => console.log(this.state.generic))
+    .catch((err) => console.log(err))
   }
 
 
@@ -133,16 +133,12 @@ export default class Queries extends React.Component {
         placeholder="Type Here"
         onChangeText={(text) => this.setState({direction: text})}
         />
-      <Text style={styles.text}>Add Notes</Text>
-      <TextInput
-      style={styles.input}
-        placeholder="Type Here"
-        onChangeText={(text) => this.setState({note: text})}
-        />
+
   <Button onPress={() => this.getMedication(this.state.query)} title="getmedstraight"/>
-  <Button onPress={() => this.getMedication(this.state)} title="state"/>
+  <Button onPress={() => console.log(this.state)} title="state"/>
   <Button onPress={() => this.addMedication()} title="add"/>
     </View>
     );
   }
 }
+

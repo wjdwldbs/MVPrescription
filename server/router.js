@@ -1,5 +1,5 @@
-const router = require("express").Router();
 const db = require("../database/index");
+const router = require("express").Router();
 const {user,drug} = require("../database/models");
 
 const lazyFun1 = (err,data,res,code)=>{
