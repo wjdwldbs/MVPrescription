@@ -79,6 +79,7 @@ export default class Queries extends React.Component {
     })
     .then(() => this.optionalPatientInfo())
     .then(() => this.getImage(query))
+    .then(() => this.addMedication())
     .catch(err => console.log(err))
   }
 
@@ -92,7 +93,7 @@ export default class Queries extends React.Component {
       })
     })
   }
-//
+
   addMedication() {
     axios.post(`http://localhost:3000/mvp/drug`, {
       name: this.state.query,
@@ -134,9 +135,7 @@ export default class Queries extends React.Component {
         onChangeText={(text) => this.setState({direction: text})}
         />
 
-  <Button onPress={() => this.getMedication(this.state.query)} title="getmedstraight"/>
-  <Button onPress={() => console.log(this.state)} title="state"/>
-  <Button onPress={() => this.addMedication()} title="add"/>
+  <Button onPress={() => this.getMedication(this.state.query)} title="Add Medication"/>
     </View>
     );
   }
