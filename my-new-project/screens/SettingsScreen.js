@@ -18,9 +18,13 @@ export default function SettingsScreen() {
 }
 
 SettingsScreen.navigationOptions = {
-  title: 'Your Medication',
+  title: 'Add Medication',
   headerStyle: {
      backgroundColor: '#0099ff',
+   },
+  headerTintColor: '#ccffff',
+  headerTitleStyle: {
+     fontSize: 25,
    },
    headerLeft: <HeaderButton />
 };

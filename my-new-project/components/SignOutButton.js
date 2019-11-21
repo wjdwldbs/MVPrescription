@@ -8,9 +8,9 @@ export default function HeaderButton(){
       <TouchableHighlight onPress={() => alert('This is a button!')}>
         <Ionicons
           name={Platform.OS=== 'ios' ? 'ios-log-out' : 'md-log-out'}
-          size={25}
+          size={35}
           style={{marginLeft: 10}}
-          color='#000000'
+          color='#ccffff'
           />
        </TouchableHighlight>
     )
