@@ -11,7 +11,8 @@ import {
   TouchableOpacity,
   View,
   Button,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 const styles = StyleSheet.create({
   text: {
@@ -46,13 +47,29 @@ export default class Queries extends React.Component {
       direction: '',
       note: '',
       sideEffect: '',
-      patientInfo: ''
+      patientInfo: '',
+      username: ''
     };
 
     this.getMedication = this.getMedication.bind(this)
     this.getImage = this.getImage.bind(this)
     this.addMedication = this.addMedication.bind(this)
     this.optionalPatientInfo = this.optionalPatientInfo.bind(this)
+    this.grabUserName = this.grabUserName.bind(this)
+  }
+
+  componentDidMount() {
+    this.grabUserName()
+  }
+
+  grabUserName() {
+    axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=test`)
+      .then((res) => {
+        this.setState({
+          username: res.data.username
+        })
+      })
+      .catch(err => console.log(err))
   }
 
   optionalPatientInfo() {
@@ -79,7 +96,6 @@ export default class Queries extends React.Component {
     })
     .then(() => this.optionalPatientInfo())
     .then(() => this.getImage(query))
-    // .then(() => this.addMedication())
     .catch(err => console.log(err))
   }
 
@@ -92,10 +108,23 @@ export default class Queries extends React.Component {
         generic: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].name
       })
     })
-    .then(() => this.addMedication())
-    .catch(() => console.log(err))
+    .then(() => Alert.alert(
+      'Are you sure you would like to add?',
+      '',
+      [
+        {text: 'Add', onPress: () => this.addMedication(),
+        style: 'cancel'
+        },
+         { text: 'Cancel', onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+         },
+      ],
+      {cancelable: false},
+    ))
+    //.then(() => this.addMedication())
+    .catch((err) => console.log(err))
   }
-
+//
   addMedication() {
     axios.post(`http://localhost:3000/mvp/drug`, {
       name: this.state.query,
@@ -104,9 +133,9 @@ export default class Queries extends React.Component {
       strength: this.state.strength,
       direction: this.state.direction,
       note: this.state.patientInfo,
-      sideEffect: this.state.sideEffect
+      sideEffect: this.state.sideEffect,
+      username: this.state.username
     })
-    .then(() => console.log('hi'))
     .catch((err) => console.log(err))
   }
 
@@ -134,23 +163,8 @@ export default class Queries extends React.Component {
         placeholder="Type Here"
         onChangeText={(text) => this.setState({direction: text})}
         />
-
-  <Button onPress={() => this.getMedication(this.state.query)} title="Add Medication"/>
+       <Button onPress={() => this.getMedication(this.state.query)} title="Add Medication"/>
     </View>
     );
   }
 }
-
-// Alert.alert(
-//   'Successfully Added!',
-//   [
-//     // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-//     // {
-//     //   text: 'Cancel',
-//     //   onPress: () => console.log('Cancel Pressed'),
-//     //   style: 'cancel',
-//     // },
-//     {text: 'OK', onPress: () => console.log('OK Pressed')},
-//   ],
-//   {cancelable: false},
-// )

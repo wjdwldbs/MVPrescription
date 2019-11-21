@@ -1,15 +1,6 @@
 const functions = require('firebase-functions');
 const express = require('express');
-
-// const admin = require('firebase-admin');
 const db = require('./fb-index');
-// var serviceAccount = require('../mvprescription-firebase-adminsdk-i7z95-28b4a0396e.json');
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://mvprescription.firebaseio.com"
-// });
-
 
 const app = express();
 // // Create and Deploy Your First Cloud Functions
