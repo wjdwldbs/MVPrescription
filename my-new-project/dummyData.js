@@ -23,5 +23,6 @@ export default dummy = [
    strength: '10 mg',
    img: 'https://www.cvs.com/webcontent/images/drug/DrugItem_31.JPG',
    direction: 'Take 1 Tablet By Mouth Once A Day at 2PM',
-  }
+  },
+  
 ]

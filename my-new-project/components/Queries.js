@@ -106,11 +106,9 @@ export default class Queries extends React.Component {
       note: this.state.patientInfo,
       sideEffect: this.state.sideEffect
     })
-    .then(() => console.log(this.state.generic))
+    .then(() => console.log('hi'))
     .catch((err) => console.log(err))
   }
-
-
 
   render() {
 
@@ -143,3 +141,16 @@ export default class Queries extends React.Component {
   }
 }
 
+// Alert.alert(
+//   'Successfully Added!',
+//   [
+//     // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+//     // {
+//     //   text: 'Cancel',
+//     //   onPress: () => console.log('Cancel Pressed'),
+//     //   style: 'cancel',
+//     // },
+//     {text: 'OK', onPress: () => console.log('OK Pressed')},
+//   ],
+//   {cancelable: false},
+// )
