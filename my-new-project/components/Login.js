@@ -66,15 +66,15 @@ export default class Login extends React.Component {
       <View style={{fontSize: 16}}>
         <Text style={{marginTop: 50}}>Log In with email and password</Text>
         <Text>Username:</Text>
-        <TextInput placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
-  
+        <TextInput autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
+
         <Text>Password:</Text>
-        <TextInput placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
+        <TextInput autoCapitalize="none" placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
         {/* <TouchableHighlight onPress={() => this.props.navigation.navigate('Main')}> */}
         <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)}>
           <Text>Log In</Text>
         </TouchableHighlight>
-  
+
         <View>
           <Text>Don't have an account?</Text>
           <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)}>
