@@ -79,7 +79,7 @@ export default class Queries extends React.Component {
     })
     .then(() => this.optionalPatientInfo())
     .then(() => this.getImage(query))
-    .then(() => this.addMedication())
+    // .then(() => this.addMedication())
     .catch(err => console.log(err))
   }
 
@@ -92,6 +92,8 @@ export default class Queries extends React.Component {
         generic: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].name
       })
     })
+    .then(() => this.addMedication())
+    .catch(() => console.log(err))
   }
 
   addMedication() {

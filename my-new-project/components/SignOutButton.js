@@ -1,17 +1,38 @@
 import React from 'react';
-import { Platform, Button, TouchableHighlight } from 'react-native';
+import { Platform, Button, TouchableHighlight, Alert } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import {Ionicons} from '@expo/vector-icons'
+import AlertDetail from './AlertDetail';
 
-export default function HeaderButton(){
+class HeaderButton extends React.Component{
+  constructor(props) {
+    super(props);
+
+  }
+
+  render() {
     return(
-      <TouchableHighlight onPress={() => alert('This is a button!')}>
+      <TouchableHighlight onPress={() => {
+        Alert.alert(
+          'Are you sure you want to sign out?',
+          '',
+          [
+            { text: 'Yes', onPress: () => this.props.navigation.navigate('Auth') },
+            { text: 'Cancel' }
+          ]
+        )
+      }}>
         <Ionicons
           name={Platform.OS=== 'ios' ? 'ios-log-out' : 'md-log-out'}
-          size={25}
+          size={35}
           style={{marginLeft: 10}}
-          color='#000000'
+          color='#ccffff'
           />
        </TouchableHighlight>
-    )
+    )    
   }
+
+}
+
+export default withNavigation(HeaderButton);

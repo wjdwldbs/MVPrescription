@@ -3,6 +3,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import Login from '../components/Login.js';
+import SignOutButton from '../components/SignOutButton.js';
 
 export default createAppContainer(
   createSwitchNavigator({
