@@ -4,7 +4,6 @@ import { Modal, View, Text, TextInput, TouchableHighlight, StyleSheet } from 're
 
 var styles = StyleSheet.create({
   container: {
-    fontSize: 25,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -15,8 +14,8 @@ var styles = StyleSheet.create({
 export default class AuthLoading extends React.Component {
   render() {
     return (
-      <View>
-        <Text style={styles.container}>Loading...</Text>
+      <View style={styles.container}>
+        <Text style={{fontSize: 25}}>Loading...</Text>
       </View>
     )
   }

@@ -8,7 +8,6 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       signupVisible: false,
-      // loadingVisible: false,
       loginUsername: '',
       loginPassword: '',
       signupUsername: '',
@@ -56,8 +55,8 @@ export default class Login extends React.Component {
     axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
       .then( async (response) => {
         if (response.data.password === password) {
-          await this.props.navigation.navigate('Main');
           await this.props.navigation.navigate('AuthLoading');
+          await this.props.navigation.navigate('Main');
         } else {
           alert('Username or password is incorrect. Please try again.')
         }
@@ -76,7 +75,6 @@ export default class Login extends React.Component {
 
         <Text>Password:</Text>
         <TextInput autoCapitalize="none" placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
-        {/* <TouchableHighlight onPress={() => this.props.navigation.navigate('Main')}> */}
         <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)}>
           <Text>Log In</Text>
         </TouchableHighlight>
@@ -120,15 +118,6 @@ export default class Login extends React.Component {
             </View>
           </Modal>
         </View>
-
-        {/* <Modal
-          animationType="slide"
-          transparent={true}
-          visible={this.state.loadingVisible}
-        >
-          <Text>Loading...</Text>
-        </Modal> */}
-
       </View>
     )
 
