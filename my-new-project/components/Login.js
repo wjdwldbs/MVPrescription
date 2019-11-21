@@ -24,7 +24,8 @@ const styles =StyleSheet.create({
       width: 200,
       backgroundColor: '#00aaff',
       borderRadius: 10,
-      marginLeft:10
+      marginLeft:10,
+      marginTop:10
     },
     activetext: {
       marginTop:4,
@@ -33,6 +34,19 @@ const styles =StyleSheet.create({
       color: '#ffffff',
       fontSize:20,
       paddingLeft:10
+    },
+    toggle: {
+      width: 150,
+      height: 25,
+      backgroundColor: '#bbbbbb',
+      borderRadius: 10,
+      marginLeft:10
+    },
+    toggleText: {
+      paddingLeft: 10,
+      fontStyle: 'italic',
+      fontSize:18,
+      color:'#ffffff'
     }
 })
 
@@ -43,7 +57,8 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false,
+      signupVisible: false,
+      passwordHidden: true,
       loginUsername: '',
       loginPassword: '',
       signupUsername: '',
@@ -58,11 +73,10 @@ export default class Login extends React.Component {
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({signupVisible: visible});
   }
 
   createNewUser() {
-    console.log(this.state);
     axios.post(`https://us-central1-mvprescription.cloudfunctions.net/api/users`, {
       username: this.state.signupUsername,
       firstName: this.state.firstName,
@@ -73,8 +87,12 @@ export default class Login extends React.Component {
       .then((response) => {
         this.setState({
           loginUsername: this.state.signupUsername,
-          loginPassword: this.state.signupPassword
+          loginPassword: this.state.signupPassword,
+          loadingVisible: !this.state.loadingVisible
         })
+      })
+      .then(() => {
+        this.props.navigation.navigate('AuthLoading')
       })
       .then(() => {
         this.props.navigation.navigate('Main')
@@ -86,9 +104,10 @@ export default class Login extends React.Component {
 
   verifyUser(username, password) {
     axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
-      .then((response) => {
+      .then( async (response) => {
         if (response.data.password === password) {
-          this.props.navigation.navigate('Main');
+          await this.props.navigation.navigate('AuthLoading');
+          await this.props.navigation.navigate('Main');
         } else {
           alert('Username or password is incorrect. Please try again.')
         }
@@ -108,8 +127,10 @@ export default class Login extends React.Component {
         <TextInput style={styles.input} autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
 
         <Text style={styles.text}>Password:</Text>
-        <TextInput style={styles.input} autoCapitalize="none" placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
-        {/* <TouchableHighlight onPress={() => this.props.navigation.navigate('Main')}> */}
+        <TextInput style={styles.input} secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
+        <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })} style= {styles.toggle}>
+          <Text style={styles.toggleText}>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+        </TouchableHighlight>
         <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)} style= {styles.button}>
           <Text style={styles.activetext}>Log In</Text>
         </TouchableHighlight>
@@ -123,12 +144,12 @@ export default class Login extends React.Component {
           <Modal
             animationType="slide"
             transparent={false}
-            visible={this.state.modalVisible}
+            visible={this.state.signupVisible}
           >
             <View>
               <TouchableHighlight
                 style={{marginTop: 50}}
-                onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                onPress={() => this.setModalVisible(!this.state.signupVisible)}
               >
                 <Text>Close</Text>
               </TouchableHighlight>
@@ -140,6 +161,9 @@ export default class Login extends React.Component {
               <TextInput placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
               <Text>Password</Text>
               <TextInput placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
+              <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
+                <Text>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+              </TouchableHighlight>
               <Text>First Name</Text>
               <TextInput placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
               <Text>Last Name</Text>
