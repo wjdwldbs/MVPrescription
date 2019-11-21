@@ -1,5 +1,5 @@
-const router = require("express").Router();
 const db = require("../database/index");
+const router = require("express").Router();
 const {user,drug} = require("../database/models");
 
 const lazyFun1 = (err,data,res,code)=>{
@@ -44,17 +44,17 @@ router.delete('/drugs/:username',(req,res)=>{
 });
 
 router.get('/drug/:name',(req,res)=>{
-  drug.find({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
+  drug.find({name:req.params.name},(err,data)=>{console.log(data); lazyFun1(err,data,res,200)});
 });
 router.post('/drug',(req,res)=>{
-  user.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
+  drug.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
 });
 router.put('/drug/:name',(req,res)=>{
   //can only update one. using unexisting name might cause error
-  user.replaceOne({name:req.params.name},req.body,(err)=>{lazyFun2(err,res,202)});
+  drug.replaceOne({name:req.params.name},req.body,(err)=>{lazyFun2(err,res,202)});
 });
 router.delete('/drug/:name',(req,res)=>{
-  user.deleteMany({name:req.params.name},(err)=>{lazyFun2(err,res,203)});
+  drug.deleteMany({name:req.params.name},(err)=>{lazyFun2(err,res,203)});
 });
 
 module.exports = router;
