@@ -1,6 +1,7 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Button, TouchableHighlight } from 'react-native';
 // import { ExpoLinksView } from '@expo/samples';
+import HeaderButton from '../components/SignOutButton.js'
 import AlertScreen from '../components/AlertScreen.js';
 
 export default function LinksScreen() {
@@ -16,8 +17,13 @@ export default function LinksScreen() {
   );
 }
 
+
 LinksScreen.navigationOptions = {
   title: 'Alerts',
+  headerStyle: {
+     backgroundColor: '#0099ff',
+   },
+   headerLeft: <HeaderButton />
 };
 
 const styles = StyleSheet.create({
