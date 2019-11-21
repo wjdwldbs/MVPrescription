@@ -27,7 +27,7 @@ export default class AlertScreen extends Component {
   render(){
     return(
       <View>
-        <Text style={styles.header}>ALERTS</Text>
+        <Text style={styles.header}>My Medication List</Text>
 
         <AlertDetail data={this.state.medList}/>
       </View>
