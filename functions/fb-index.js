@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-var serviceAccount = require("../mvprescription-firebase-adminsdk-i7z95-28b4a0396e.json");
+var serviceAccount = require("./mvprescription-firebase-adminsdk-i7z95-28b4a0396e");
 // const firebase = require('firebase');
 
 // var firebaseConfig = {

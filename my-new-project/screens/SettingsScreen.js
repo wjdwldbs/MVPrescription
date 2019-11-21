@@ -3,7 +3,6 @@ import React from 'react';
 
 import {View} from 'react-native';
 import Queries from '../components/Queries.js';
-import MedInfo from './MedInfoScreen';
 import HeaderButton from '../components/SignOutButton.js'
 
 
@@ -16,17 +15,19 @@ export default function SettingsScreen() {
 
   return (
     <View>
-      <MedInfo/> 
       <Queries/>
     </View>
   );
-  // <MedInfo/> put here for test purpose
 }
 
 SettingsScreen.navigationOptions = {
-  title: 'Your Medication',
+  title: 'Add Medication',
   headerStyle: {
      backgroundColor: '#0099ff',
+   },
+  headerTintColor: '#ccffff',
+  headerTitleStyle: {
+     fontSize: 25,
    },
    headerLeft: <HeaderButton />
 };

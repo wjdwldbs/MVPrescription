@@ -24,14 +24,26 @@ export default class Login extends React.Component {
   }
 
   createNewUser() {
-    console.log('create user attempted');
-    axios.post('https://mvprescription.firebaseio.com/users', {
+    // console.log('create user attempted');
+    axios.post('https://us-central1-mvprescription.cloudfunctions.net/api/users', {
       username: this.state.username,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.signupEmail,
       password: this.state.signupPassword
     })
+      .then((response) => {
+        console.log(response);
+      })
+      .then(() => {
+        this.setState({
+          loginEmail: this.state.signupEmail,
+          loginPassword: this.state.signupPassword
+        })
+      })
+      .then(() => {
+        this.props.navigation.navigate('Main')
+      })
       .catch((err) => {
         console.error(err);
       })
