@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import AlertDetail from './AlertDetail.js';
-import dummy from '../dummyData.js';
+import axios from 'axios';
+//import dummy from '../dummyData.js';
 
 const styles =StyleSheet.create({
   header: {
@@ -20,8 +21,24 @@ export default class AlertScreen extends Component {
   constructor(){
     super();
     this.state = {
-      medList: dummy
+      username: 'test',
+      medList: []
     }
+    this.getMedList = this.getMedList.bind(this);
+  }
+
+  getMedList(username){
+    axios.get(`/mvp/drugs/${username}`)
+    .then((results) => {
+      this.setState({
+        medList: results.data
+      })
+    })
+    .catch((err) => console.log(`unsuccessful get user med request ${err}`))
+  }
+
+  componentDidMount(){
+    this.getMedList(this.state.username)
   }
 
   render(){
