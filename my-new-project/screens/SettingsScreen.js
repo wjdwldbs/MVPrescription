@@ -14,10 +14,11 @@ export default function SettingsScreen() {
 
   return (
     <View>
-      <MedInfo/> {/* for test purpose */}
+      <MedInfo/> 
       <Queries/>
     </View>
   );
+  // <MedInfo/> put here for test purpose
 }
 
 SettingsScreen.navigationOptions = {
