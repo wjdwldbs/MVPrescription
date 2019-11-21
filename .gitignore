@@ -62,3 +62,8 @@ typings/
 
 package-lock.json
 mvprescription-firebase-adminsdk-i7z95-28b4a0396e.json
+yarn.lock
+.firebase*
+firebase*
+firestore*
+storage.rules

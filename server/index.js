@@ -5,6 +5,9 @@ const cors = require("cors");
 const port = 3000;
 const router = require("./router");
 
+// const firebase = require('../fb/fb-index.js');
+const firebaseMethods = require('../fb/fb-controller.js');
+
 const app = express();
 app.use(bParser.json());
 app.use(bParser.urlencoded({ extended: true }));
@@ -18,3 +21,10 @@ app.get("/server/test", (req, res) => {
 });
 
 app.use("/mvp", router);
+
+// ===================================FIREBASE QUERIES BELOW================================================
+// *********************************************************************************************************
+
+// app.post('/users', (req, res) => {
+//   console.log('hit it n quit it')
+// })
