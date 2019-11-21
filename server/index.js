@@ -20,11 +20,6 @@ app.get("/server/test", (req, res) => {
   res.status(200).send(":" + port + " is watching you");
 });
 
+
+
 app.use("/mvp", router);
-
-// ===================================FIREBASE QUERIES BELOW================================================
-// *********************************************************************************************************
-
-// app.post('/users', (req, res) => {
-//   console.log('hit it n quit it')
-// })
