@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
 import axios from 'axios';
+import Queries from './Queries.js'
+
 const styles =StyleSheet.create({
     text:{
       fontSize:25,
@@ -33,6 +35,10 @@ const styles =StyleSheet.create({
       paddingLeft:10
     }
 })
+
+
+
+
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
