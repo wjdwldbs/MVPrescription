@@ -11,8 +11,8 @@ var addUser = (username, password, firstName, lastName, email) => {
   })
 }
 
-var getUser = (userid) => {
-  db.collection('users').doc(userid).get()
+var getUser = (username) => {
+  db.collection('users').doc(username).get()
     .then((doc) => {
       if (!doc.exists) {
         console.error('Could not find info for that user.');

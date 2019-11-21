@@ -32,6 +32,9 @@ export default class Login extends React.Component {
       email: this.state.signupEmail,
       password: this.state.signupPassword
     })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   render() {
@@ -43,7 +46,7 @@ export default class Login extends React.Component {
   
         <Text>Password:</Text>
         <TextInput placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
-        <TouchableHighlight onPress={() => console.log('login attempted')}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('Main')}>
           <Text>Log In</Text>
         </TouchableHighlight>
   

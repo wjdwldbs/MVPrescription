@@ -10,10 +10,10 @@ import LoginForm from './components/Login.js/';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  // App.loggedIn = false;
-  // App.toggleLogin = function() {
-  //   App.loggedIn = true;
-  // }
+  App.loggedIn = false;
+  App.toggleLogin = function() {
+    App.loggedIn = true;
+  }
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
