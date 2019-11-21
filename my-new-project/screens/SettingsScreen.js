@@ -1,6 +1,10 @@
 import React from 'react';
 // import { ExpoConfigView } from '@expo/samples';
-import Queries from '../components/Queries.js'
+
+import {View} from 'react-native';
+import Queries from '../components/Queries.js';
+import MedInfo from './MedInfoScreen';
+import HeaderButton from '../components/SignOutButton.js'
 
 
 export default function SettingsScreen() {
@@ -11,11 +15,18 @@ export default function SettingsScreen() {
   //return <ExpoConfigView />;
 
   return (
-
-    <Queries />
+    <View>
+      <MedInfo/> 
+      <Queries/>
+    </View>
   );
+  // <MedInfo/> put here for test purpose
 }
 
 SettingsScreen.navigationOptions = {
-  title: 'app.json',
+  title: 'Your Medication',
+  headerStyle: {
+     backgroundColor: '#0099ff',
+   },
+   headerLeft: <HeaderButton />
 };
