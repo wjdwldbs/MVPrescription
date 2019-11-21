@@ -15,7 +15,7 @@ export default class AuthLoading extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 25}}>Loading...</Text>
+        <Text style={{fontSize: 30}}>Loading...</Text>
       </View>
     )
   }

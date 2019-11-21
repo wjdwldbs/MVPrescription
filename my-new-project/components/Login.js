@@ -8,6 +8,7 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       signupVisible: false,
+      passwordHidden: true,
       loginUsername: '',
       loginPassword: '',
       signupUsername: '',
@@ -71,10 +72,13 @@ export default class Login extends React.Component {
       <View style={{fontSize: 16}}>
         <Text style={{marginTop: 50}}>Log In with email and password</Text>
         <Text>Username:</Text>
-        <TextInput autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
+        <TextInput autoCapitalize="none" placeholder="Username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
 
         <Text>Password:</Text>
-        <TextInput autoCapitalize="none" placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
+        <TextInput secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
+        <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
+          <Text>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+        </TouchableHighlight>
         <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)}>
           <Text>Log In</Text>
         </TouchableHighlight>
@@ -105,6 +109,9 @@ export default class Login extends React.Component {
               <TextInput placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
               <Text>Password</Text>
               <TextInput placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
+              <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
+                <Text>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+              </TouchableHighlight>
               <Text>First Name</Text>
               <TextInput placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
               <Text>Last Name</Text>
