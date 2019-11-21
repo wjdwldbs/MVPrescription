@@ -12,7 +12,8 @@ import {
   View,
   Button,
   TextInput,
-  Alert
+  Alert,
+  TouchableHighlight
 } from 'react-native';
 const styles = StyleSheet.create({
   text: {
@@ -29,6 +30,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#33ccff',
     color: 'white',
 
+  },
+  activetext: {
+    marginTop:4,
+    textAlignVertical:'center',
+    textAlign:'center',
+    color: '#ffffff',
+    fontSize:20,
+    paddingLeft:10
+  },
+  button: {
+    height:35,
+    width: 200,
+    backgroundColor: '#00aaff',
+    borderRadius: 10,
+    marginLeft:10,
+    marginTop:10
   }
 
 })
@@ -86,6 +103,7 @@ export default class Queries extends React.Component {
 
 
   getMedication(query) {
+
     axios.get(`https://api.fda.gov/drug/label.json?search=description:${query}&limit=1`)
     .then(res => {
       this.setState({
@@ -124,8 +142,9 @@ export default class Queries extends React.Component {
     //.then(() => this.addMedication())
     .catch((err) => console.log(err))
   }
-//
+
   addMedication() {
+
     axios.post(`http://localhost:3000/mvp/drug`, {
       name: this.state.query,
       generic: this.state.generic,
@@ -163,8 +182,15 @@ export default class Queries extends React.Component {
         placeholder="Type Here"
         onChangeText={(text) => this.setState({direction: text})}
         />
-       <Button onPress={() => this.getMedication(this.state.query)} title="Add Medication"/>
+       {/* <TouchableHighlight onPress={() => this.getMedication(this.state.query)} title="Add Medication">
+         </TouchableHighlight>/> */}
+         <TouchableHighlight style={styles.button} onPress={() => this.getMedication(this.state.query)}>
+           <Text style={styles.activetext}>
+             Add Medication</Text>
+         </TouchableHighlight>
+
     </View>
     );
   }
 }
+

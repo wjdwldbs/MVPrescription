@@ -46,9 +46,12 @@ router.delete('/drugs/:username',(req,res)=>{
 router.get('/drug/:_id',(req,res)=>{
   drug.find({_id:req.params._id},(err,data)=>{console.log(data); lazyFun1(err,data,res,200)});
 });
+
+
 router.post('/drug',(req,res)=>{
   drug.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
 });
+
 router.put('/drug/:name',(req,res)=>{
   //can only update one. using unexisting name might cause error
   drug.replaceOne({name:req.params.name},req.body,(err)=>{lazyFun2(err,res,202)});
@@ -56,5 +59,5 @@ router.put('/drug/:name',(req,res)=>{
 router.delete('/drug/:name',(req,res)=>{
   drug.deleteMany({name:req.params.name},(err)=>{lazyFun2(err,res,203)});
 });
-
+//
 module.exports = router;
