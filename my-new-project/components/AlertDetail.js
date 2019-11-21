@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS, Button, Alert } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-//import PushNotificationIOS from "@react-native-community/push-notification-ios";
-//var PushNotification = require("react-native-push-notification");
-//import PushNotification from "react-native-push-notification";
-//import RNLocalNotifications from 'react-native-local-notifications';
+import { Notifications} from 'expo';
 
 export default class AlertDetail extends Component {
   constructor(props){
@@ -43,18 +40,21 @@ export default class AlertDetail extends Component {
     this.setState({switch2Value: !this.state.switch2Value})
   }
 
-  showNotification = () => {
-    // PushNotification.localNotificationSchedule({
-    //   //... You can use all the options from localNotifications
-    //   message: "My Notification Message", // (required)
-    //   date: new Date(Date.now() + 1 * 1000) // in 60 secs
-    // });
-    //RNLocalNotifications.createNotification(1, 'Some text', '2017-01-02 12:30', 'default');
-    // PushNotificationIOS.presentLocalNotification({
-    //   alertTitle: 'test',
-    //   alertBody: 'success'
-
-    // });
+  showNotification = (medName, direction) => {
+    Alert.alert(
+      `Time to take your med, ${medName}`,
+      `${direction}`,
+      [
+        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      {cancelable: false},
+    );
   }
 
 
@@ -118,7 +118,7 @@ export default class AlertDetail extends Component {
                 onPress={() => this.setState({modalVisible: !this.state.modalVisible})} >
                   <Text style={{fontSize: 35, fontWeight: 'bold'}}>Close</Text>
                 </TouchableHighlight>
-                <Button title='Demo' onPress={() => this.showNotification()}></Button>
+                <Button title='Demo' onPress={() => this.showNotification(med.name, med.direction)}></Button>
               </View>
 
               <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
