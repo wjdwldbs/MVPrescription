@@ -18,7 +18,7 @@ export default class MedInfoScreen extends React.Component{
   componentDidMount(){
 
     // fatal props : drugName
-    
+
     fetch('http://localhost:3000/drug/'+this.props.drugName)
       .then((data)=>{
         var obj=data.json()[0];
