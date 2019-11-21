@@ -1,7 +1,57 @@
 import React from 'react';
-import { Modal, View, Text, TextInput, TouchableHighlight } from 'react-native';
+import { Modal, View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
 import axios from 'axios';
 import Queries from './Queries.js'
+
+const styles =StyleSheet.create({
+    text:{
+      fontSize:25,
+      textDecorationLine: 'underline',
+      paddingLeft:10
+    },
+    smallText:{
+      fontSize:20,
+      fontStyle: 'italic',
+      color: '#6e6e6e',
+      paddingLeft:10
+    },
+    input:{
+      fontSize:22,
+      paddingLeft:10
+    },
+    button: {
+      height:35,
+      width: 200,
+      backgroundColor: '#00aaff',
+      borderRadius: 10,
+      marginLeft:10,
+      marginTop:10
+    },
+    activetext: {
+      marginTop:4,
+      textAlignVertical:'center',
+      textAlign:'center',
+      color: '#ffffff',
+      fontSize:20,
+      paddingLeft:10
+    },
+    toggle: {
+      width: 150,
+      height: 25,
+      backgroundColor: '#bbbbbb',
+      borderRadius: 10,
+      marginLeft:10
+    },
+    toggleText: {
+      paddingLeft: 10,
+      fontStyle: 'italic',
+      fontSize:18,
+      color:'#ffffff'
+    }
+})
+
+
+
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -69,24 +119,26 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={{fontSize: 16}}>
-        <Text style={{marginTop: 50}}>Log In with email and password</Text>
-        <Text>Username:</Text>
-        <TextInput autoCapitalize="none" placeholder="Username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
+      <View >
+      <View style={{height:100, backgroundColor: '#00aaff'}}>
+        <Text style={{marginTop: 50, fontSize: 25, fontWeight: 'bold', color: '#ffffff', textAlign:'center'}}>Log in</Text>
+      </View>
+        <Text style={styles.text}>Username:</Text>
+        <TextInput style={styles.input} autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
 
-        <Text>Password:</Text>
-        <TextInput secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
-        <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
-          <Text>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+        <Text style={styles.text}>Password:</Text>
+        <TextInput style={styles.input} secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
+        <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })} style= {styles.toggle}>
+          <Text style={styles.toggleText}>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)}>
-          <Text>Log In</Text>
+        <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)} style= {styles.button}>
+          <Text style={styles.activetext}>Log In</Text>
         </TouchableHighlight>
 
         <View>
-          <Text>Don't have an account?</Text>
-          <TouchableHighlight onPress={() => this.setModalVisible(!this.state.signupVisible)}>
-            <Text>Sign up!</Text>
+          <Text style={styles.smallText}>Don't have an account?</Text>
+          <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)} style= {styles.button}>
+            <Text  style={styles.activetext}>Sign up!</Text>
           </TouchableHighlight>
 
           <Modal
