@@ -9,6 +9,7 @@ export default class MedInfoScreen extends React.Component{
       show:true
     };
   }
+
   render(){
     return (
       <Modal animationType="slide"

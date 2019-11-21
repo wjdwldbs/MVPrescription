@@ -71,11 +71,11 @@ export default class AlertDetail extends Component {
             </TouchableHighlight>
             </View>
 
-            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>             
-              
+            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
+
               <View>
-                <TouchableHighlight style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, marginTop: 30}} 
-                onPress={() => this.setState({modalVisible: !this.state.modalVisible})} > 
+                <TouchableHighlight style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, marginTop: 30}}
+                onPress={() => this.setState({modalVisible: !this.state.modalVisible})} >
                   <Text style={{fontSize: 35, fontWeight: 'bold'}}>Close</Text>
                 </TouchableHighlight>
               </View>
@@ -126,9 +126,9 @@ export default class AlertDetail extends Component {
                 <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
                 <Text style={{marginHorizontal: 10}}>OFF</Text>
               </View>
-              
-               
-            </Modal> 
+
+
+            </Modal>
           </View>
         ))}
       </View>
