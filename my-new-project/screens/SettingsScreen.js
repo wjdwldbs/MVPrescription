@@ -1,6 +1,8 @@
 import React from 'react';
 // import { ExpoConfigView } from '@expo/samples';
-import Queries from '../components/Queries.js'
+import {View} from 'react-native';
+import Queries from '../components/Queries.js';
+import MedInfo from './MedInfoScreen';
 
 
 export default function SettingsScreen() {
@@ -11,8 +13,10 @@ export default function SettingsScreen() {
   //return <ExpoConfigView />;
 
   return (
-
-    <Queries />
+    <View>
+      <MedInfo/> {/* for test purpose */}
+      <Queries/>
+    </View>
   );
 }
 
