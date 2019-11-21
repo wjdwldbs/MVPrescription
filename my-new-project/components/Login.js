@@ -9,9 +9,9 @@ export default class Login extends React.Component {
       modalVisible: false,
       loginUsername: '',
       loginPassword: '',
-      signupEmail: '',
+      signupUsername: '',
       signupPassword: '',
-      username: '',
+      email: '',
       firstName: '',
       lastName: ''
     }
@@ -25,20 +25,17 @@ export default class Login extends React.Component {
   }
 
   createNewUser() {
-    // console.log('create user attempted');
-    axios.post('https://us-central1-mvprescription.cloudfunctions.net/api/users', {
-      username: this.state.username,
+    console.log(this.state);
+    axios.post(`https://us-central1-mvprescription.cloudfunctions.net/api/users`, {
+      username: this.state.signupUsername,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      email: this.state.signupEmail,
+      email: this.state.email,
       password: this.state.signupPassword
     })
       .then((response) => {
-        console.log(response);
-      })
-      .then(() => {
         this.setState({
-          loginEmail: this.state.signupEmail,
+          loginUsername: this.state.signupUsername,
           loginPassword: this.state.signupPassword
         })
       })
@@ -53,10 +50,10 @@ export default class Login extends React.Component {
   verifyUser(username, password) {
     axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
       .then((response) => {
-        if (response.data.password !== password) {
-          alert('Username or password is incorrect. Please try again.')
-        } else {
+        if (response.data.password === password) {
           this.props.navigation.navigate('Main');
+        } else {
+          alert('Username or password is incorrect. Please try again.')
         }
       })
       .catch((err) => {
@@ -99,9 +96,11 @@ export default class Login extends React.Component {
 
               <Text>Please fill out the entire form to create an account.</Text>
               <Text>Email</Text>
-              <TextInput placeholder="Email" onChangeText={(text) => this.setState({ signupEmail: text })}/>
+              <TextInput placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
               <Text>Username</Text>
-              <TextInput placeholder="Username" onChangeText={(text) => this.setState({ signupPassword: text })}/>
+              <TextInput placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
+              <Text>Password</Text>
+              <TextInput placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
               <Text>First Name</Text>
               <TextInput placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
               <Text>Last Name</Text>
