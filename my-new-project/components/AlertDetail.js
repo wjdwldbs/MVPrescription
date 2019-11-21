@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS, Button } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-//import console = require('console');
-//import console from ('console');
+//import PushNotificationIOS from "@react-native-community/push-notification-ios";
+//var PushNotification = require("react-native-push-notification");
+//import PushNotification from "react-native-push-notification";
+//import RNLocalNotifications from 'react-native-local-notifications';
 
 export default class AlertDetail extends Component {
   constructor(props){
@@ -21,7 +23,8 @@ export default class AlertDetail extends Component {
       switch1Value: false,
       switch2Value: false,
       chosenDate: new Date(),
-      currentMed: ''
+      currentMed: '',
+      alert: false
     }
 
     this.setDate = this.setDate.bind(this);
@@ -38,6 +41,20 @@ export default class AlertDetail extends Component {
 
   toggleSwitch2 = (value) => {
     this.setState({switch2Value: !this.state.switch2Value})
+  }
+
+  showNotification = () => {
+    // PushNotification.localNotificationSchedule({
+    //   //... You can use all the options from localNotifications
+    //   message: "My Notification Message", // (required)
+    //   date: new Date(Date.now() + 1 * 1000) // in 60 secs
+    // });
+    //RNLocalNotifications.createNotification(1, 'Some text', '2017-01-02 12:30', 'default');
+    // PushNotificationIOS.presentLocalNotification({
+    //   alertTitle: 'test',
+    //   alertBody: 'success'
+
+    // });
   }
 
 
@@ -85,7 +102,7 @@ export default class AlertDetail extends Component {
               {med.name}: {med.strength}
               </Text>
               <Text style={{fontSize:16}}>{med.direction}</Text>
-              {(med.note !== "") && <Text style={{fontSize:16, fontWeight: 'bold'}}>* {med.note} *</Text>}
+              {(med.note !== "") && <Text style={{fontSize:16, fontWeight: 'bold', color: '#8A0101'}}>* {med.note} *</Text>}
               </View>
             </TouchableOpacity>
 
@@ -101,6 +118,7 @@ export default class AlertDetail extends Component {
                 onPress={() => this.setState({modalVisible: !this.state.modalVisible})} >
                   <Text style={{fontSize: 35, fontWeight: 'bold'}}>Close</Text>
                 </TouchableHighlight>
+                <Button title='Demo' onPress={() => this.showNotification()}></Button>
               </View>
 
               <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
