@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, TextInput, TouchableHighlight } from 'react-native';
 import axios from 'axios';
+import Queries from './Queries.js'
 
 export default class Login extends React.Component {
   constructor(props) {
