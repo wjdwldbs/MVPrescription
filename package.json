@@ -11,7 +11,8 @@
     "start": "nodemon server/index.js",
     "init": "firebase init",
     "deploy": "firebase deploy --only functions:api",
-    "login": "firebase login"
+    "login": "firebase login",
+    "seed": "node database/testData.js"
   },
   "dependencies": {
     "axios": "^0.19.0",

@@ -1,4 +1,4 @@
-var db = require('../functions/fb-index.js/index.js');
+var db = require('../functions/fb-index.js');
 const firebase = require('firebase');
 
 var addUser = (username, password, firstName, lastName, email) => {

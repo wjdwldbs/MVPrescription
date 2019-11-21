@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS } from 'react-native';
 import Swipeout from 'react-native-swipeout';
+//import console = require('console');
 //import console from ('console');
 
 export default class AlertDetail extends Component {
@@ -20,7 +21,7 @@ export default class AlertDetail extends Component {
       switch1Value: false,
       switch2Value: false,
       chosenDate: new Date(),
-      currentMed: 0
+      currentMed: ''
     }
 
     this.setDate = this.setDate.bind(this);
@@ -58,32 +59,24 @@ export default class AlertDetail extends Component {
       return <Picker.Item key={i} value={t} label={t} />
     });
 
-    let swipeBtns = [{
-      text: 'DELETE',
-      backgroundColor: '#D82259',
-      underlayColor: '#FDCAD7',
-      color: '#FDCAD7',
-      onPress: () => { this.props.deleteMed(med._id) }
-    }, {
-      text: 'UPDATE',
-      backgroundColor: '#0099ff',
-      underlayColor: '#B6CAF9',
-      color: '#e6ffff',
-      onPress: () => { this.deleteNote(rowData) }
-    }, {
-      text: 'SET ALERT',
-      backgroundColor: '#F4FA3A',
-      underlayColor: '#FEFDCE',
-      color: 'black',
-      onPress: () => { this.setState({modalVisible: true}) }
-    }];
-
     return(
       <View>
         {this.props.data.map((med, i) => (
-        <Swipeout key={i} right={swipeBtns} autoClose={true} backgroundColor= 'transparent'>
+        <Swipeout key={i} right={[{
+          text: 'DELETE',
+          backgroundColor: '#D82259',
+          underlayColor: '#FDCAD7',
+          color: '#FDCAD7',
+          onPress: () => {this.props.deleteMed(med._id) }
+        }, {
+          text: 'SET ALERT',
+          backgroundColor: '#F4FA3A',
+          underlayColor: '#FEFDCE',
+          color: 'black',
+          onPress: () => { this.setState({modalVisible: true}) }
+        }]} autoClose={true} backgroundColor= 'transparent'>
 
-          <View key={i}>
+          <View onPress={()=>{this.setState({currentMed: med._id}); console.log(this.state.currentMed); }} key={i}>
             <View style={{marginBottom: 15}}>
             <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}}>
               <Image style={{width: 100, height: 100}} source={{uri:med.imgUrl}}/>
@@ -92,6 +85,7 @@ export default class AlertDetail extends Component {
               {med.name}: {med.strength}
               </Text>
               <Text style={{fontSize:16}}>{med.direction}</Text>
+              {(med.note !== "") && <Text style={{fontSize:16, fontWeight: 'bold'}}>* {med.note} *</Text>}
               </View>
             </TouchableOpacity>
 
@@ -187,4 +181,12 @@ export default class AlertDetail extends Component {
               </View> */}
 
 
+              //update button on swipeout
 
+              // {
+              //   text: 'UPDATE',
+              //   backgroundColor: '#0099ff',
+              //   underlayColor: '#B6CAF9',
+              //   color: '#e6ffff',
+              //   onPress: () => { this.deleteNote(rowData) }
+              // }, 

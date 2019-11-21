@@ -14,7 +14,6 @@ const styles =StyleSheet.create({
   alert: {
     
   }
-
 })
 
 export default class AlertScreen extends Component {
