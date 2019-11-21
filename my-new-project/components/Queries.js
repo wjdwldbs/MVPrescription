@@ -46,13 +46,29 @@ export default class Queries extends React.Component {
       direction: '',
       note: '',
       sideEffect: '',
-      patientInfo: ''
+      patientInfo: '',
+      username: ''
     };
 
     this.getMedication = this.getMedication.bind(this)
     this.getImage = this.getImage.bind(this)
     this.addMedication = this.addMedication.bind(this)
     this.optionalPatientInfo = this.optionalPatientInfo.bind(this)
+    this.grabUserName = this.grabUserName.bind(this)
+  }
+
+  componentDidMount() {
+    this.grabUserName()
+  }
+
+  grabUserName() {
+    axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=test`)
+      .then((res) => {
+        this.setState({
+          username: res.data.username
+        })
+      })
+      .catch(err => console.log(err))
   }
 
   optionalPatientInfo() {
@@ -104,7 +120,8 @@ export default class Queries extends React.Component {
       strength: this.state.strength,
       direction: this.state.direction,
       note: this.state.patientInfo,
-      sideEffect: this.state.sideEffect
+      sideEffect: this.state.sideEffect,
+      username: this.state.username
     })
     .then(() => console.log('hi'))
     .catch((err) => console.log(err))
@@ -136,6 +153,7 @@ export default class Queries extends React.Component {
         />
 
   <Button onPress={() => this.getMedication(this.state.query)} title="Add Medication"/>
+  <Button onPress={() => console.log(this.state.username)} title="Username"/>
     </View>
     );
   }
