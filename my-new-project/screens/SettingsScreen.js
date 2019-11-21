@@ -1,6 +1,7 @@
 import React from 'react';
 // import { ExpoConfigView } from '@expo/samples';
 import Queries from '../components/Queries.js'
+import HeaderButton from '../components/SignOutButton.js'
 
 
 export default function SettingsScreen() {
@@ -17,5 +18,9 @@ export default function SettingsScreen() {
 }
 
 SettingsScreen.navigationOptions = {
-  title: 'app.json',
+  title: 'Your Medication',
+  headerStyle: {
+     backgroundColor: '#0099ff',
+   },
+   headerLeft: <HeaderButton />
 };
