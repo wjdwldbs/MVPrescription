@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-import console from require('console');
+//import console from ('console');
 
 export default class AlertDetail extends Component {
   constructor(props){
@@ -63,7 +63,7 @@ export default class AlertDetail extends Component {
       backgroundColor: '#D82259',
       underlayColor: '#FDCAD7',
       color: '#FDCAD7',
-      onPress: () => { this.deleteNote(rowData) }
+      onPress: () => { this.props.deleteMed(med._id) }
     }, {
       text: 'UPDATE',
       backgroundColor: '#0099ff',

@@ -25,16 +25,26 @@ export default class AlertScreen extends Component {
       medList: []
     }
     this.getMedList = this.getMedList.bind(this);
+    this.deleteMed = this.deleteMed.bind(this);
   }
 
   getMedList(username){
-    axios.get(`/mvp/drugs/${username}`)
+    axios.get(`http://localhost:3000/mvp/drugs/${username}`)
     .then((results) => {
       this.setState({
         medList: results.data
       })
     })
     .catch((err) => console.log(`unsuccessful get user med request ${err}`))
+  }
+
+  deleteMed(_id){
+    axios.delete(`http://localhost:3000/mvp/drugs/${_id}`)
+    .then(() => {
+      this.getMedList(this.state.username)
+      console.log('successfully deleted med')
+    })
+    .catch((err) => console.log(`unsuccessful delete med request ${err}`))
   }
 
   componentDidMount(){
@@ -46,7 +56,7 @@ export default class AlertScreen extends Component {
       <View>
         <Text style={styles.header}>My Medication List</Text>
 
-        <AlertDetail data={this.state.medList}/>
+        <AlertDetail deleteMed={this.deleteMed} data={this.state.medList}/>
       </View>
     );
   }
