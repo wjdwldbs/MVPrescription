@@ -33,8 +33,37 @@ app.post('/users', (req, res) => {
       res.status(201).send('Successfully created user.')
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
+      res.status(404).send('Could not create user.')
     })
 })
+
+app.get('/users', (req, res) => {
+  const { username } = req.query;
+  db.collection('users').doc(username).get()
+    .then((doc) => {
+        if (!doc.exists) {
+        console.error('Could not find info for that user.');
+        } else {
+        res.status(200).send(doc.data());
+        }
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(400).send('Could not get user information.')
+    })
+})
+
+// app.get('/users/', (req, res) => {
+//   const { email } = req.query;
+//   admin.auth().getUserByEmail(email)
+//   .then((userRecord) => {
+//     res.status(200).send(userRecord.toJSON())
+//     console.log('Successfully fetched user data:', userRecord.toJSON());
+//   })
+//   .catch((err) => {
+//    console.log('Error fetching user data:', err);
+//   });
+// })
 
 exports.api = functions.https.onRequest(app)
