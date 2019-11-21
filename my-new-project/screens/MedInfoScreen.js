@@ -26,8 +26,8 @@ export default class MedInfoScreen extends React.Component{
               <Image style={{width:120, height:120}}
                 source={{uri:'https://hsm.utimaco.com/wp-content/uploads/2017/09/Applications_Grey_RGB_Random_Number_Generation-300x300.png'}}/>
               <View style={{flex:1, flexDirection:'column', justifyContent:'center'}}>
-                <Text style={{fontSize:22}}>{this.props.name||'this.props.name'}</Text>
-                <Text style={{fontSize:20}}>{this.props.type||'this.props.type'}</Text>
+                <Text style={{fontSize:22, paddingLeft:5}}>{this.props.name||'this.props.name'}</Text>
+                <Text style={{fontSize:20, paddingLeft:5}}>{this.props.type||'this.props.type'}</Text>
               </View>
             </View>
             <Text style={{fontSize:18, borderBottomColor:'lightgrey', borderBottomWidth:1, paddingBottom:8}}>{this.props.direction||
