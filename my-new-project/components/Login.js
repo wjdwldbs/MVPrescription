@@ -7,7 +7,7 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
-      loginEmail: '',
+      loginUsername: '',
       loginPassword: '',
       signupEmail: '',
       signupPassword: '',
@@ -17,6 +17,7 @@ export default class Login extends React.Component {
     }
 
     this.createNewUser = this.createNewUser.bind(this);
+    this.verifyUser = this.verifyUser.bind(this);
   }
 
   setModalVisible(visible) {
@@ -49,16 +50,31 @@ export default class Login extends React.Component {
       })
   }
 
+  verifyUser(username, password) {
+    axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
+      .then((response) => {
+        if (response.data.password !== password) {
+          alert('Username or password is incorrect. Please try again.')
+        } else {
+          this.props.navigation.navigate('Main');
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
   render() {
     return (
       <View style={{fontSize: 16}}>
         <Text style={{marginTop: 50}}>Log In with email and password</Text>
-        <Text>Email:</Text>
-        <TextInput placeholder="email" onChangeText={(text) => this.setState({ loginEmail: text })}/>
+        <Text>Username:</Text>
+        <TextInput placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
   
         <Text>Password:</Text>
         <TextInput placeholder="password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
-        <TouchableHighlight onPress={() => this.props.navigation.navigate('Main')}>
+        {/* <TouchableHighlight onPress={() => this.props.navigation.navigate('Main')}> */}
+        <TouchableHighlight onPress={() => this.verifyUser(this.state.loginUsername, this.state.loginPassword)}>
           <Text>Log In</Text>
         </TouchableHighlight>
   

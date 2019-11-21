@@ -1,10 +1,11 @@
 import React from 'react';
 import { Platform, Button, TouchableHighlight, Alert } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 import {Ionicons} from '@expo/vector-icons'
 import AlertDetail from './AlertDetail';
 
-export default class HeaderButton extends React.Component{
+class HeaderButton extends React.Component{
   constructor(props) {
     super(props);
 
@@ -32,4 +33,6 @@ export default class HeaderButton extends React.Component{
     )    
   }
 
-  }
+}
+
+export default withNavigation(HeaderButton);
