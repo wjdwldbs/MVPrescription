@@ -19,10 +19,14 @@ export default function LinksScreen() {
 
 
 LinksScreen.navigationOptions = {
-  title: 'Alerts',
+  title: 'Your Reminders',
   headerStyle: {
      backgroundColor: '#0099ff',
    },
+   headerTitleStyle: {
+      fontSize: 25,
+    },
+   headerTintColor: '#ccffff',
    headerLeft: <HeaderButton />
 };
 
