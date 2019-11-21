@@ -22,14 +22,17 @@ export default class MedInfoScreen extends React.Component{
         onTouchOutside={()=>{this.setState({show:false})}}>
         <ModalContent>
           <ScrollView>
-            <View>
-              <Image style={{width:50, height:50}}
+            <View style={{flex:1, flexDirection:'row'}}>
+              <Image style={{width:120, height:120}}
                 source={{uri:'https://hsm.utimaco.com/wp-content/uploads/2017/09/Applications_Grey_RGB_Random_Number_Generation-300x300.png'}}/>
-              <Text>{this.props.type||'this.props.type'}</Text>
+              <View style={{flex:1, flexDirection:'column', justifyContent:'center'}}>
+                <Text style={{fontSize:22}}>{this.props.name||'this.props.name'}</Text>
+                <Text style={{fontSize:20}}>{this.props.type||'this.props.type'}</Text>
+              </View>
             </View>
-            <Text>{this.props.direction||
+            <Text style={{fontSize:18, borderBottomColor:'lightgrey', borderBottomWidth:1, paddingBottom:8}}>{this.props.direction||
               'this.props.direction : this part should be the information from FDA indicating the usage and amount patient should take for this medicine'}</Text>
-            <Text>{this.props.sEffect||
+            <Text style={{fontSize:18, paddingTop:8}}>{this.props.sEffect||
               'this.props.sEffect : this part should render the information about what side effect will this medicine cause provided by FDA'}</Text>
           </ScrollView>
         </ModalContent>
