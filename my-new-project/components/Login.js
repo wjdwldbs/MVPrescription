@@ -108,18 +108,36 @@ export default class Login extends React.Component {
   }
 
   verifyUser(username, password) {
-    axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
-      .then( async (response) => {
-        if (response.data.password === password) {
-          await this.props.navigation.navigate('AuthLoading');
-          await this.props.navigation.navigate('Main');
-        } else {
-          alert('Username or password is incorrect. Please try again.')
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    if (!username || !password) {
+      alert('Please fill out both username and password forms.');
+    } else {
+      axios.get('https://us-central1-mvprescription.cloudfunctions.net/api/users/all')
+        .then((response) => {
+          for (var i = 0; i < response.data.length; i++) {
+            if (response.data[i].username === username) {
+              axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
+                .then( async (response) => {
+                  if (response.data.username === username && response.data.password === password) {
+                    await this.props.navigation.navigate('AuthLoading');
+                    await this.props.navigation.navigate('Main');
+                  } else {
+                    alert('Password is incorrect. Please try again.');
+                  }
+                })
+                .catch((err) => {
+                  console.error(err)
+                })
+              return;
+            } else {
+              alert('Username does not exist. Please sign up or try again.');
+              break;
+            }
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+    }
   }
 
   render() {
@@ -145,7 +163,7 @@ export default class Login extends React.Component {
         <View>
           <Text style={styles.smallText}>Don't have an account?</Text>
           <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)} style= {styles.button}>
-            <Text  style={styles.activetext}>Sign up!</Text>
+            <Text style={styles.activetext}>Sign up!</Text>
           </TouchableHighlight>
 
           <Modal
@@ -161,25 +179,26 @@ export default class Login extends React.Component {
                 <Text>Close</Text>
               </TouchableHighlight>
 
-              <Text>Please fill out the entire form to create an account.</Text>
-              <Text>Email</Text>
-              <TextInput placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
-              <Text>Username</Text>
-              <TextInput placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
-              <Text>Password</Text>
-              <TextInput placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
-              <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
-                <Text>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+              <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>              
+              <Text style={styles.text}>Email</Text>
+              <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
+              <Text style={styles.text}>Username</Text>
+              <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
+              <Text style={styles.text}>Password</Text>
+              <TextInput style={styles.input} placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
+              <TouchableHighlight style={styles.toggle} onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
+                <Text style={styles.toggleText} >{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
               </TouchableHighlight>
-              <Text>First Name</Text>
-              <TextInput placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
-              <Text>Last Name</Text>
-              <TextInput placeholder="Last Name" onChangeText={(text) => this.setState({ lastName: text })}/>
+              <Text style={styles.text}>First Name</Text>
+              <TextInput style={styles.input} placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
+              <Text style={styles.text}>Last Name</Text>
+              <TextInput style={styles.input} placeholder="Last Name" onChangeText={(text) => this.setState({ lastName: text })}/>
 
               <TouchableHighlight
                 onPress={this.createNewUser}
+                style= {styles.button}
               >
-                <Text>Submit</Text>
+                <Text style={styles.activetext} >Submit</Text>
               </TouchableHighlight>
             </View>
           </Modal>

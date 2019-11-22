@@ -62,4 +62,40 @@ drug.create([{
   username: 'test',
   period: '',
   dose: ''
+}, {
+  name: 'Metformin',
+  generic: '',
+  imgUrl: 'https://img.medscapestatic.com/pi/features/drugdirectory/octupdate/ING01540.jpg',
+  strength: '500 mg',
+  direction: 'Take 1 Tablet By Mouth Twice A Day',
+  note: 'With food/milk',
+  sideEffect: '',
+
+  username: 'test',
+  period: '',
+  dose: ''
+}, {
+  name: 'Januvia',
+  generic: '',
+  imgUrl: 'https://img.medscapestatic.com/pi/features/drugdirectory/octupdate/MSD01120.jpg',
+  strength: '100 mg',
+  direction: 'Take 1 Tablet By Mouth Once A Day',
+  note: '',
+  sideEffect: '',
+
+  username: 'test',
+  period: '',
+  dose: ''
+},  {
+  name: 'Metoprolol ER',
+  generic: '',
+  imgUrl: 'https://img.medscapestatic.com/pi/features/drugdirectory/octupdate/WTS08320.jpg',
+  strength: '50 mg',
+  direction: 'Take 1 Tablet By Mouth Once A Day',
+  note: '',
+  sideEffect: '',
+
+  username: 'test',
+  period: '',
+  dose: ''
 }])

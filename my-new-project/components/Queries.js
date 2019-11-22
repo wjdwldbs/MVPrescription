@@ -45,7 +45,8 @@ export default class Queries extends React.Component {
       medication: '',
       strength: '',
       direction: '',
-      note: '',
+      patientInfo: '',
+      notes:'',
       sideEffect: '',
       patientInfo: '',
       username: ''
@@ -132,7 +133,8 @@ export default class Queries extends React.Component {
       imgUrl: this.state.image,
       strength: this.state.strength,
       direction: this.state.direction,
-      note: this.state.patientInfo,
+      patientInfo: this.state.patientInfo,
+      note: this.state.notes,
       sideEffect: this.state.sideEffect,
       username: this.state.username
     })
@@ -162,6 +164,12 @@ export default class Queries extends React.Component {
       style={styles.input}
         placeholder="Type Here"
         onChangeText={(text) => this.setState({direction: text})}
+        />
+      <Text style={styles.text}>Notes</Text>
+      <TextInput
+      style={styles.input}
+        placeholder="Type Here"
+        onChangeText={(text) => this.setState({notes: text})}
         />
        <Button onPress={() => this.getMedication(this.state.query)} title="Add Medication"/>
     </View>

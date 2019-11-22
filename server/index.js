@@ -4,6 +4,7 @@ const cors = require("cors");
 // const path = require("path");
 const port = 3000;
 const router = require("./router");
+const db = require('./index.js')
 
 // const firebase = require('../fb/fb-index.js');
 const firebaseMethods = require('../fb/fb-controller.js');

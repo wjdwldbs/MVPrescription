@@ -9,16 +9,18 @@ const UserSchema = mongoose.Schema({
 const DrugSchema = mongoose.Schema({
     // id: Number,
     name: { type: String, default: ()=>("") }, //name of the drug
+
     generic: { type: String, default: ()=>("") },
     imgUrl: { type: String, default: ()=>("") },
-    strength: { type: String, default: ()=>("") },
     direction: { type: String, default: ()=>("") }, //how to use drug
-    note: { type: String, default: ()=>("") },
     sideEffect: { type: String, default: ()=>("") },
+    patientInfo: { type: String, default: ()=>("") },
 
     username: { type: String, default: ()=>("") }, //name of the user
+    strength: { type: String, default: ()=>("") },
     period: { type: String, default: ()=>("") }, //recording the period of user taking this drug
     dose: { type: String, default: ()=>("") }, //recording the dose of user taking this drug
+    note: { type: String, default: ()=>("") },
   }, { collection: "Drug" }
 );
 

@@ -6,7 +6,7 @@ export default class MedInfoScreen extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      show:true,
+      // show:true,
       //load: false, // should I?
 
       name:"",
@@ -17,7 +17,7 @@ export default class MedInfoScreen extends React.Component{
   }
   componentDidMount(){
 
-    // fatal props : drugName
+    // fatal props : drugName, show
 
     fetch('http://localhost:3000/drug/'+this.props.drugName)
       .then((data)=>{
@@ -25,7 +25,7 @@ export default class MedInfoScreen extends React.Component{
         var temp={name:this.props.drugName};
         if(obj){
           temp.generic = obj.generic || "";
-          temp.note = obj.not || "";
+          temp.note = obj.patientInfo || "";
           temp.sEffect = obj.sideEffect || "";
         }
         this.setState(temp);
@@ -36,7 +36,7 @@ export default class MedInfoScreen extends React.Component{
       <Modal animationType="slide"
         height={500} width={0.9}
         modalTitle={<ModalTitle title={this.state.name||''}/>}
-        visible={this.state.show}
+        visible={this.props.show}
         swipeDirection={['up', 'down']}
         swipeThreshold={100}
         onSwipeOut={() => {this.setState({ show: false });
