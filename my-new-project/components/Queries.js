@@ -27,10 +27,13 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button: {
-    height:50,
-    width: 250,
-    backgroundColor: '#33ccff',
-    color: 'white',
+    height:35,
+    width: 200,
+    backgroundColor: '#00aaff',
+    alignSelf: 'center',
+    borderRadius: 10,
+    marginLeft:10,
+    marginTop:10
 
   },
   activetext: {
@@ -41,14 +44,14 @@ const styles = StyleSheet.create({
     fontSize:20,
     paddingLeft:10
   },
-  button: {
-    height:35,
-    width: 200,
-    backgroundColor: '#00aaff',
-    borderRadius: 10,
-    marginLeft:10,
-    marginTop:10
-  }
+  // button: {
+  //   height:35,
+  //   width: 200,
+  //   backgroundColor: '#00aaff',
+  //   borderRadius: 10,
+  //   marginLeft:10,
+  //   marginTop:10
+  // }
 
 })
 export default class Queries extends React.Component {
@@ -126,7 +129,7 @@ export default class Queries extends React.Component {
     axios.get(`https://rximage.nlm.nih.gov/api/rximage/1/rxnav?name=${drugQuery}&rLimit=1`)
     .then(res => {
       this.setState({
-        image: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].imageUrl,
+        image: (res.data.nlmRxImages.length === 0) ? 'https://www.cvs.com/webcontent/images/drug/DrugItem_31.JPG' : res.data.nlmRxImages[0].imageUrl,
         generic: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].name
       })
     })
