@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import AlertDetail from './AlertDetail.js';
 import axios from 'axios';
 //import dummy from '../dummyData.js';
@@ -50,6 +50,13 @@ export default class AlertScreen extends Component {
     this.getMedList(this.state.username)
   }
 
+  componentDidUpdate() {
+    if (1 !== 0){
+      this.getMedList(this.state.username)
+    }
+  }
+
+
   render(){
     return(
       <View>
@@ -60,4 +67,4 @@ export default class AlertScreen extends Component {
     );
   }
 }
-//hello
+
