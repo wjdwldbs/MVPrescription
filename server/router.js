@@ -39,12 +39,18 @@ router.get('/drugs/:username',(req,res)=>{
   drug.find({username:req.params.username},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 // router.put('/drugs',(req,res)=>{});
-router.delete('/drugs/:_id',(req,res)=>{
-  drug.findOneAndDelete({_id:req.params._id},(err)=>{lazyFun2(err,res,203)});
+router.delete('/drugs/username/:username',(req,res)=>{
+  drug.deleteMany({username:req.params.username},(err)=>{lazyFun2(err,res,203)});
+});
+router.delete('/drugs/:id',(req,res)=>{
+  drug.deleteMany({_id:req.params.id},(err)=>{lazyFun2(err,res,203)});
 });
 
 router.get('/drug/:name',(req,res)=>{
   drug.find({name:req.params.name},(err,data)=>{console.log(data); lazyFun1(err,data,res,200)});
+});
+router.get('/drug/id/:id',(req,res)=>{
+  drug.find({_id:req.params.id},(err,data)=>{console.log(data); lazyFun1(err,data,res,200)});
 });
 router.post('/drug',(req,res)=>{
   drug.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
