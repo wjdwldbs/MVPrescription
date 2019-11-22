@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS, Button, Alert } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-//import console from ('console');
+import MedInfoScreen from '../screens/MedInfoScreen.js';
+import { Notifications} from 'expo';
 
 export default class AlertDetail extends Component {
   constructor(props){
     super(props);
     this.state = {
-
       modalVisible: false,
       selectedHour: 0,
       selectedMedDay: 0,
@@ -20,7 +20,9 @@ export default class AlertDetail extends Component {
       switch1Value: false,
       switch2Value: false,
       chosenDate: new Date(),
-      currentMed: 0
+      currentMed: '',
+      alert: false,
+      showInfo: false
     }
 
     this.setDate = this.setDate.bind(this);
@@ -37,6 +39,23 @@ export default class AlertDetail extends Component {
 
   toggleSwitch2 = (value) => {
     this.setState({switch2Value: !this.state.switch2Value})
+  }
+
+  showNotification = (medName, direction) => {
+    Alert.alert(
+      `Time to take your med, ${medName}`,
+      `${direction}`,
+      [
+        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      {cancelable: false},
+    );
   }
 
 
@@ -58,32 +77,24 @@ export default class AlertDetail extends Component {
       return <Picker.Item key={i} value={t} label={t} />
     });
 
-    let swipeBtns = [{
-      text: 'DELETE',
-      backgroundColor: '#D82259',
-      underlayColor: '#FDCAD7',
-      color: '#FDCAD7',
-      onPress: () => { this.props.deleteMed(med._id) }
-    }, {
-      text: 'UPDATE',
-      backgroundColor: '#0099ff',
-      underlayColor: '#B6CAF9',
-      color: '#e6ffff',
-      onPress: () => { this.deleteNote(rowData) }
-    }, {
-      text: 'SET ALERT',
-      backgroundColor: '#F4FA3A',
-      underlayColor: '#FEFDCE',
-      color: 'black',
-      onPress: () => { this.setState({modalVisible: true}) }
-    }];
-
     return(
       <View>
         {this.props.data.map((med, i) => (
-        <Swipeout key={i} right={swipeBtns} autoClose={true} backgroundColor= 'transparent'>
+        <Swipeout key={i} right={[{
+          text: 'DELETE',
+          backgroundColor: '#D82259',
+          underlayColor: '#FDCAD7',
+          color: '#FDCAD7',
+          onPress: () => {this.props.deleteMed(med._id) }
+        }, {
+          text: 'SET ALERT',
+          backgroundColor: '#F4FA3A',
+          underlayColor: '#FEFDCE',
+          color: 'black',
+          onPress: () => { this.setState({modalVisible: true}) }
+        }]} autoClose={true} backgroundColor= 'transparent'>
 
-          <View key={i}>
+          <View onPress={()=>{this.setState({currentMed: med._id}); console.log(this.state.currentMed); }} key={i}>
             <View style={{marginBottom: 15}}>
             <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}}>
               <Image style={{width: 100, height: 100}} source={{uri:med.imgUrl}}/>
@@ -92,6 +103,7 @@ export default class AlertDetail extends Component {
               {med.name}: {med.strength}
               </Text>
               <Text style={{fontSize:16}}>{med.direction}</Text>
+              {(med.note !== "") && <Text style={{fontSize:16, fontWeight: 'bold', color: '#8A0101'}}>* {med.note} *</Text>}
               </View>
             </TouchableOpacity>
 
@@ -107,6 +119,7 @@ export default class AlertDetail extends Component {
                 onPress={() => this.setState({modalVisible: !this.state.modalVisible})} >
                   <Text style={{fontSize: 35, fontWeight: 'bold'}}>Close</Text>
                 </TouchableHighlight>
+                <Button title='Demo' onPress={() => this.showNotification(med.name, med.direction)}></Button>
               </View>
 
               <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
@@ -187,4 +200,12 @@ export default class AlertDetail extends Component {
               </View> */}
 
 
+              //update button on swipeout
 
+              // {
+              //   text: 'UPDATE',
+              //   backgroundColor: '#0099ff',
+              //   underlayColor: '#B6CAF9',
+              //   color: '#e6ffff',
+              //   onPress: () => { this.deleteNote(rowData) }
+              // }, 
