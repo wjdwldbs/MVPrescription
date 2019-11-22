@@ -82,15 +82,15 @@ export default class AlertDetail extends Component {
         {this.props.data.map((med, i) => (
         <Swipeout key={i} right={[{
           text: 'DELETE',
-          backgroundColor: '#D82259',
-          underlayColor: '#FDCAD7',
-          color: '#FDCAD7',
+          backgroundColor: '#00bbcc',
+          underlayColor: '#00ccdd',
+          color: '#FFFFFF',
           onPress: () => {this.props.deleteMed(med._id) }
         }, {
           text: 'SET ALERT',
-          backgroundColor: '#F4FA3A',
-          underlayColor: '#FEFDCE',
-          color: 'black',
+          backgroundColor: '#00ccdd',
+          underlayColor: '#00bbcc',
+          color: '#FFFFFF',
           onPress: () => { this.setState({modalVisible: true}) }
         }]} autoClose={true} backgroundColor= 'transparent'>
 
@@ -208,4 +208,4 @@ export default class AlertDetail extends Component {
               //   underlayColor: '#B6CAF9',
               //   color: '#e6ffff',
               //   onPress: () => { this.deleteNote(rowData) }
-              // }, 
+              // },
