@@ -45,6 +45,23 @@ app.get('/users', (req, res) => {
     })
 })
 
+app.get('/users/all', async (req, res) => {
+  var docs = [];
+  await db.collection('users').get()
+  .then((collection) => {
+    collection.docs.forEach((doc) => {
+      docs.push(doc.data());
+    })
+  })
+  .then(() => {
+    res.status(200).send(docs);
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(400).send('Could not get user information.')
+  })
+})
+
 // app.get('/users/', (req, res) => {
 //   const { email } = req.query;
 //   admin.auth().getUserByEmail(email)

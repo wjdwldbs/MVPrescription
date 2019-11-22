@@ -17,7 +17,11 @@ export default class MedInfoScreen extends React.Component{
   }
   componentDidMount(){
 
+<<<<<<< HEAD
     // fatal props : drugName   ,   show
+=======
+    // fatal props : drugName, show
+>>>>>>> da451924b8ad41f97ffffd5ee955fb51e2d656f6
 
     fetch('http://localhost:3000/drug/'+this.props.drugName)
       .then((data)=>{
