@@ -12,7 +12,7 @@ const styles =StyleSheet.create({
     textAlign: 'center'
   },
   alert: {
-    
+
   }
 })
 
@@ -36,7 +36,7 @@ export default class AlertScreen extends Component {
     })
     .catch((err) => console.log(`unsuccessful get user med request ${err}`))
   }
-  
+
   deleteMed(_id){
     axios.delete(`http://52.53.163.210:3000/mvp/drugs/${_id}`)
     .then(() => {
@@ -51,7 +51,7 @@ export default class AlertScreen extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.update !== this.props.update){
+    if (0 !== 1){
       this.getMedList(this.state.username)
     }
   }
