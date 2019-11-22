@@ -114,9 +114,6 @@ export default class AlertDetail extends Component {
               </View>
             </TouchableOpacity>
 
-            {/* <TouchableHighlight onPress={() => this.setState({modalVisible: true})}>
-              <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#DC143C'}}>Set Alerts</Text>
-            </TouchableHighlight> */}
             </View>
 
             <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
@@ -188,31 +185,3 @@ export default class AlertDetail extends Component {
     );
   }
 }
-              {/* <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                <Text style={{marginBottom: 0, fontSize: 35}}>Set Refill Med Reminder</Text>
-
-                <View style={{height: 100, width: 'auto'}}>
-                  <Text style={{marginTop: "10%", fontSize: 25}}>Every</Text>
-                  <Picker selectedValue={this.state.selectedDay} onValueChange={(day) => thdis.setState({selectedDay: day})}>
-                    {getDays}
-                  </Picker>
-                  <Text style={{fontSize: 25}}>Day(s)</Text>
-                </View>
-              </View>
-
-              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 300}}>
-                <Text style={{marginHorizontal: 10}}>ON</Text>
-                <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
-                <Text style={{marginHorizontal: 10}}>OFF</Text>
-              </View> */}
-
-
-              //update button on swipeout
-
-              // {
-              //   text: 'UPDATE',
-              //   backgroundColor: '#0099ff',
-              //   underlayColor: '#B6CAF9',
-              //   color: '#e6ffff',
-              //   onPress: () => { this.deleteNote(rowData) }
-              // }, 
