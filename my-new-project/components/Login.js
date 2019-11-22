@@ -103,18 +103,36 @@ export default class Login extends React.Component {
   }
 
   verifyUser(username, password) {
-    axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
-      .then( async (response) => {
-        if (response.data.password === password) {
-          await this.props.navigation.navigate('AuthLoading');
-          await this.props.navigation.navigate('Main');
-        } else {
-          alert('Username or password is incorrect. Please try again.')
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    if (!username || !password) {
+      alert('Please fill out both username and password forms.');
+    } else {
+      axios.get('https://us-central1-mvprescription.cloudfunctions.net/api/users/all')
+        .then((response) => {
+          for (var i = 0; i < response.data.length; i++) {
+            if (response.data[i].username === username) {
+              axios.get(`https://us-central1-mvprescription.cloudfunctions.net/api/users?username=${username}`)
+                .then( async (response) => {
+                  if (response.data.username === username && response.data.password === password) {
+                    await this.props.navigation.navigate('AuthLoading');
+                    await this.props.navigation.navigate('Main');
+                  } else {
+                    alert('Password is incorrect. Please try again.');
+                  }
+                })
+                .catch((err) => {
+                  console.error(err)
+                })
+              return;
+            } else {
+              alert('Username does not exist. Please sign up or try again.');
+              break;
+            }
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+    }
   }
 
   render() {
