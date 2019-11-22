@@ -146,7 +146,7 @@ export default class Queries extends React.Component {
 //
   addMedication() {
 
-    axios.post(`http://localhost:3000/mvp/drug`, {
+    axios.post(`http://52.53.163.210:3000/mvp/drug`, {
       name: this.state.query,
       generic: this.state.generic,
       imgUrl: this.state.image,
