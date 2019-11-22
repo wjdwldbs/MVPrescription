@@ -25,7 +25,7 @@ export default class MedInfoScreen extends React.Component{
         var temp={name:this.props.drugName};
         if(obj){
           temp.generic = obj.generic || "";
-          temp.note = obj.not || "";
+          temp.note = obj.patientInfo || "";
           temp.sEffect = obj.sideEffect || "";
         }
         this.setState(temp);
