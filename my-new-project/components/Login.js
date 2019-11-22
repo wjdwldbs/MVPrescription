@@ -17,7 +17,8 @@ const styles =StyleSheet.create({
     },
     input:{
       fontSize:22,
-      paddingLeft:10
+      paddingLeft:10,
+      marginBottom:5
     },
     button: {
       height:35,
@@ -47,6 +48,10 @@ const styles =StyleSheet.create({
       fontStyle: 'italic',
       fontSize:18,
       color:'#ffffff'
+    },
+    body:{
+      alignItems: 'center',
+      flexDirection:'column'
     }
 })
 
@@ -137,12 +142,14 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View >
-      <View style={{height:100, backgroundColor: '#00aaff'}}>
+      <View>
+      <View style={{ height:100, backgroundColor: '#00aaff'}}>
+
         <Text style={{marginTop: 50, fontSize: 25, fontWeight: 'bold', color: '#ffffff', textAlign:'center'}}>Log in</Text>
       </View>
+      <View style={styles.body}>
         <Text style={styles.text}>Username:</Text>
-        <TextInput style={styles.input} autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
+        <TextInput style={styles.input} autoCapitalize="none" placeholder="Username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
 
         <Text style={styles.text}>Password:</Text>
         <TextInput style={styles.input} secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
@@ -172,7 +179,7 @@ export default class Login extends React.Component {
                 <Text>Close</Text>
               </TouchableHighlight>
 
-              <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>              
+              <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>
               <Text style={styles.text}>Email</Text>
               <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
               <Text style={styles.text}>Username</Text>
@@ -195,6 +202,7 @@ export default class Login extends React.Component {
               </TouchableHighlight>
             </View>
           </Modal>
+        </View>
         </View>
       </View>
     )
