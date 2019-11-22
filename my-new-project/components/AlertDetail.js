@@ -22,7 +22,7 @@ export default class AlertDetail extends Component {
       chosenDate: new Date(),
       currentMed: '',
       alert: false,
-      showInfo: false
+      modalMed: ''
     }
 
     this.setDate = this.setDate.bind(this);
@@ -79,24 +79,26 @@ export default class AlertDetail extends Component {
 
     return(
       <View>
+        <MedInfoScreen drugName={"test"}/>
+
         {this.props.data.map((med, i) => (
         <Swipeout key={i} right={[{
           text: 'DELETE',
-          backgroundColor: '#00bbcc',
-          underlayColor: '#00ccdd',
-          color: '#FFFFFF',
+          backgroundColor: '#D82259',
+          underlayColor: '#FDCAD7',
+          color: '#FDCAD7',
           onPress: () => {this.props.deleteMed(med._id) }
         }, {
           text: 'SET ALERT',
-          backgroundColor: '#00ccdd',
-          underlayColor: '#00bbcc',
-          color: '#FFFFFF',
+          backgroundColor: '#F4FA3A',
+          underlayColor: '#FEFDCE',
+          color: 'black',
           onPress: () => { this.setState({modalVisible: true}) }
         }]} autoClose={true} backgroundColor= 'transparent'>
 
-          <View onPress={()=>{this.setState({currentMed: med._id}); console.log(this.state.currentMed); }} key={i}>
+          <View onPress={()=>{this.setState({currentMed: med._id})}} key={i}>
             <View style={{marginBottom: 15}}>
-            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}}>
+            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}} onPress={() => {this.setState({modalMed: med.name})}}>
               <Image style={{width: 100, height: 100}} source={{uri:med.imgUrl}}/>
               <View style={{width: 100, height: 100, flex:1, flexDirection: 'column'}}>
               <Text style={{fontSize: 18, fontWeight: 'bold', textDecorationLine:'underline', textTransform: 'uppercase'}}>
@@ -107,9 +109,6 @@ export default class AlertDetail extends Component {
               </View>
             </TouchableOpacity>
 
-            {/* <TouchableHighlight onPress={() => this.setState({modalVisible: true})}>
-              <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#DC143C'}}>Set Alerts</Text>
-            </TouchableHighlight> */}
             </View>
 
             <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
@@ -174,38 +173,9 @@ export default class AlertDetail extends Component {
           </View>
           </Swipeout>
         ))}
-
+        
+        
       </View>
     );
   }
 }
-
-
-              {/* <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                <Text style={{marginBottom: 0, fontSize: 35}}>Set Refill Med Reminder</Text>
-
-                <View style={{height: 100, width: 'auto'}}>
-                  <Text style={{marginTop: "10%", fontSize: 25}}>Every</Text>
-                  <Picker selectedValue={this.state.selectedDay} onValueChange={(day) => thdis.setState({selectedDay: day})}>
-                    {getDays}
-                  </Picker>
-                  <Text style={{fontSize: 25}}>Day(s)</Text>
-                </View>
-              </View>
-
-              <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 300}}>
-                <Text style={{marginHorizontal: 10}}>ON</Text>
-                <Switch onValueChange={this.toggleSwitch2} value={this.state.switch2Value}/>
-                <Text style={{marginHorizontal: 10}}>OFF</Text>
-              </View> */}
-
-
-              //update button on swipeout
-
-              // {
-              //   text: 'UPDATE',
-              //   backgroundColor: '#0099ff',
-              //   underlayColor: '#B6CAF9',
-              //   color: '#e6ffff',
-              //   onPress: () => { this.deleteNote(rowData) }
-              // },

@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import axios from 'axios';
+import AlertScreen from './AlertScreen.js'
 
 import {
   Image,
@@ -15,6 +16,7 @@ import {
   Alert,
   TouchableHighlight
 } from 'react-native';
+import AlertDetail from './AlertDetail';
 const styles = StyleSheet.create({
   text: {
     fontSize: 30,
@@ -25,10 +27,13 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button: {
-    height:50,
-    width: 250,
-    backgroundColor: '#33ccff',
-    color: 'white',
+    height:35,
+    width: 200,
+    backgroundColor: '#00aaff',
+    alignSelf: 'center',
+    borderRadius: 10,
+    marginLeft:10,
+    marginTop:10
 
   },
   activetext: {
@@ -39,14 +44,14 @@ const styles = StyleSheet.create({
     fontSize:20,
     paddingLeft:10
   },
-  button: {
-    height:35,
-    width: 200,
-    backgroundColor: '#00aaff',
-    borderRadius: 10,
-    marginLeft:10,
-    marginTop:10
-  }
+  // button: {
+  //   height:35,
+  //   width: 200,
+  //   backgroundColor: '#00aaff',
+  //   borderRadius: 10,
+  //   marginLeft:10,
+  //   marginTop:10
+  // }
 
 })
 export default class Queries extends React.Component {
@@ -66,7 +71,8 @@ export default class Queries extends React.Component {
       notes:'',
       sideEffect: '',
       patientInfo: '',
-      username: ''
+      username: '',
+      update: false
     };
 
     this.getMedication = this.getMedication.bind(this)
@@ -123,7 +129,7 @@ export default class Queries extends React.Component {
     axios.get(`https://rximage.nlm.nih.gov/api/rximage/1/rxnav?name=${drugQuery}&rLimit=1`)
     .then(res => {
       this.setState({
-        image: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].imageUrl,
+        image: (res.data.nlmRxImages.length === 0) ? 'https://www.cvs.com/webcontent/images/drug/DrugItem_31.JPG' : res.data.nlmRxImages[0].imageUrl,
         generic: (res.data.nlmRxImages.length === 0) ? '' : res.data.nlmRxImages[0].name
       })
     })
