@@ -28,7 +28,7 @@ export default class AlertScreen extends Component {
   }
 
   getMedList(username){
-    axios.get(`http://localhost:3000/mvp/drugs/${username}`)
+    axios.get(`http://52.53.163.210:3000/mvp/drugs/${username}`)
     .then((results) => {
       this.setState({
         medList: results.data
@@ -38,7 +38,7 @@ export default class AlertScreen extends Component {
   }
   
   deleteMed(_id){
-    axios.delete(`http://localhost:3000/mvp/drugs/${_id}`)
+    axios.delete(`http://52.53.163.210:3000/mvp/drugs/${_id}`)
     .then(() => {
       this.getMedList(this.state.username)
       console.log('successfully deleted med')
