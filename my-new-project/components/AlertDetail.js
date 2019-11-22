@@ -22,7 +22,7 @@ export default class AlertDetail extends Component {
       chosenDate: new Date(),
       currentMed: '',
       alert: false,
-      showInfo: false
+      show: false
     }
 
     this.setDate = this.setDate.bind(this);
@@ -96,7 +96,7 @@ export default class AlertDetail extends Component {
 
           <View onPress={()=>{this.setState({currentMed: med._id}); console.log(this.state.currentMed); }} key={i}>
             <View style={{marginBottom: 15}}>
-            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}}>
+            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}} onPress={() => this.setState({show: true})}>
               <Image style={{width: 100, height: 100}} source={{uri:med.imgUrl}}/>
               <View style={{width: 100, height: 100, flex:1, flexDirection: 'column'}}>
               <Text style={{fontSize: 18, fontWeight: 'bold', textDecorationLine:'underline', textTransform: 'uppercase'}}>
@@ -112,8 +112,10 @@ export default class AlertDetail extends Component {
             </TouchableHighlight> */}
             </View>
 
-            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
+            {this.state.show && <MedInfoScreen show={this.state.show} drugName={med.name}/>}
 
+            <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
+              
               <View>
                 <TouchableHighlight style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, marginTop: 30}}
                 onPress={() => this.setState({modalVisible: !this.state.modalVisible})} >
