@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Switch, Modal, TouchableHighlight, Picker, DatePickerIOS, Button, Alert } from 'react-native';
 import Swipeout from 'react-native-swipeout';
+import MedInfoScreen from '../screens/MedInfoScreen.js';
 import { Notifications} from 'expo';
 
 export default class AlertDetail extends Component {
   constructor(props){
     super(props);
     this.state = {
-
       modalVisible: false,
       selectedHour: 0,
       selectedMedDay: 0,
@@ -21,7 +21,8 @@ export default class AlertDetail extends Component {
       switch2Value: false,
       chosenDate: new Date(),
       currentMed: '',
-      alert: false
+      alert: false,
+      showInfo: false
     }
 
     this.setDate = this.setDate.bind(this);
