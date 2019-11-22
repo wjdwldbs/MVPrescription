@@ -41,7 +41,7 @@ export default class MedInfoScreen extends React.Component{
     return (
       <Modal animationType="slide"
         height={500} width={0.9}
-        modalTitle={<ModalTitle title={this.state.name||''}/>}
+        modalTitle={<ModalTitle title={this.props.drugName}/>}
         visible={this.props.show}
         swipeDirection={['up', 'down']}
         swipeThreshold={100}
@@ -54,7 +54,7 @@ export default class MedInfoScreen extends React.Component{
               <Image style={{width:120, height:120}}
                 source={{uri:'https://hsm.utimaco.com/wp-content/uploads/2017/09/Applications_Grey_RGB_Random_Number_Generation-300x300.png'}}/>
               <View style={{flex:1, flexDirection:'column', justifyContent:'center'}}>
-                <Text style={{fontSize:22, paddingLeft:5}}>{this.state.name||''}</Text>
+                <Text style={{fontSize:22, paddingLeft:5}}>{this.props.drugName}</Text>
                 <Text style={{fontSize:20, paddingLeft:5}}>{this.state.generic||''}</Text>
               </View>
             </View>
