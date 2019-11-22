@@ -17,7 +17,8 @@ const styles =StyleSheet.create({
     },
     input:{
       fontSize:22,
-      paddingLeft:10
+      paddingLeft:10,
+      marginBottom:5
     },
     button: {
       height:35,
@@ -47,6 +48,10 @@ const styles =StyleSheet.create({
       fontStyle: 'italic',
       fontSize:18,
       color:'#ffffff'
+    },
+    body:{
+      alignItems: 'center',
+      flexDirection:'column'
     }
 })
 
@@ -137,12 +142,14 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View >
-      <View style={{height:100, backgroundColor: '#00aaff'}}>
+      <View>
+      <View style={{ height:100, backgroundColor: '#00aaff'}}>
+
         <Text style={{marginTop: 50, fontSize: 25, fontWeight: 'bold', color: '#ffffff', textAlign:'center'}}>Log in</Text>
       </View>
+      <View style={styles.body}>
         <Text style={styles.text}>Username:</Text>
-        <TextInput style={styles.input} autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
+        <TextInput style={styles.input} autoCapitalize="none" placeholder="Username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
 
         <Text style={styles.text}>Password:</Text>
         <TextInput style={styles.input} secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
@@ -156,7 +163,7 @@ export default class Login extends React.Component {
         <View>
           <Text style={styles.smallText}>Don't have an account?</Text>
           <TouchableHighlight onPress={() => this.setModalVisible(!this.state.modalVisible)} style= {styles.button}>
-            <Text  style={styles.activetext}>Sign up!</Text>
+            <Text style={styles.activetext}>Sign up!</Text>
           </TouchableHighlight>
 
           <Modal
@@ -172,28 +179,30 @@ export default class Login extends React.Component {
                 <Text>Close</Text>
               </TouchableHighlight>
 
-              <Text>Please fill out the entire form to create an account.</Text>
-              <Text>Email</Text>
-              <TextInput placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
-              <Text>Username</Text>
-              <TextInput placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
-              <Text>Password</Text>
-              <TextInput placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
-              <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
-                <Text>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
+              <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>
+              <Text style={styles.text}>Email</Text>
+              <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
+              <Text style={styles.text}>Username</Text>
+              <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
+              <Text style={styles.text}>Password</Text>
+              <TextInput style={styles.input} placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
+              <TouchableHighlight style={styles.toggle} onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
+                <Text style={styles.toggleText} >{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
               </TouchableHighlight>
-              <Text>First Name</Text>
-              <TextInput placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
-              <Text>Last Name</Text>
-              <TextInput placeholder="Last Name" onChangeText={(text) => this.setState({ lastName: text })}/>
+              <Text style={styles.text}>First Name</Text>
+              <TextInput style={styles.input} placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
+              <Text style={styles.text}>Last Name</Text>
+              <TextInput style={styles.input} placeholder="Last Name" onChangeText={(text) => this.setState({ lastName: text })}/>
 
               <TouchableHighlight
                 onPress={this.createNewUser}
+                style= {styles.button}
               >
-                <Text>Submit</Text>
+                <Text style={styles.activetext} >Submit</Text>
               </TouchableHighlight>
             </View>
           </Modal>
+        </View>
         </View>
       </View>
     )
