@@ -157,8 +157,6 @@ export default class Queries extends React.Component {
       sideEffect: this.state.sideEffect,
       username: this.state.username
     })
-    .then(() => globalNum++)
-    .then(() => console.log(globalNum))
     .catch((err) => console.log(err))
   }
 
