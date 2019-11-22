@@ -36,7 +36,7 @@ export default class AlertScreen extends Component {
     })
     .catch((err) => console.log(`unsuccessful get user med request ${err}`))
   }
-
+  
   deleteMed(_id){
     axios.delete(`http://localhost:3000/mvp/drugs/${_id}`)
     .then(() => {

@@ -1,14 +1,13 @@
 import React from 'react';
 import { ScrollView, Image, Text, View, StyleSheet } from 'react-native';
 import Modal, { ModalTitle, ModalContent } from 'react-native-modals';
-import axios from 'axios';
 
 
 export default class MedInfoScreen extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      // show:true,
+      show:false,
       //load: false, // should I?
 
       name:"",
@@ -18,14 +17,12 @@ export default class MedInfoScreen extends React.Component{
     };
   }
   componentDidMount(){
-
     // fatal props : drugName, show
-
-
+    this.setState({show:this.props.show});
     fetch('http://localhost:3000/mvp/drug/'+this.props.drugName)
       .then((data) => data.json())
       .then((data)=>{
-        console.log(data)
+        //console.log(data)
         var obj=data[0];
         var temp={name:this.props.drugName};
         if(obj){
@@ -34,19 +31,30 @@ export default class MedInfoScreen extends React.Component{
           temp.sEffect = obj.sideEffect || "";
         }
         this.setState(temp);
-      });
+      })
+      .catch((err) => console.log(`fetch error: ${err}`))
+  }
+
+  out(){
+    this.setState({show:false});
+    this.props.modalShow();
   }
 
   render(){
     return (
       <Modal animationType="slide"
         height={500} width={0.9}
+<<<<<<< HEAD
         modalTitle={<ModalTitle title={this.props.drugName}/>}
         visible={this.props.show}
+=======
+        modalTitle={<ModalTitle title={this.state.name||''}/>}
+        visible={this.state.show}
+>>>>>>> c7863ab113c2ff5eea048fa6cd2a829285e40064
         swipeDirection={['up', 'down']}
         swipeThreshold={100}
-        onSwipeOut={this.props.modalShow}
-        onTouchOutside={this.props.modalShow}
+        onSwipeOut={this.out.bind(this)}
+        onTouchOutside={this.out.bind(this)}
         >
         <ModalContent>
           <ScrollView>
