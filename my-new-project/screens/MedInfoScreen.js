@@ -40,7 +40,7 @@ export default class MedInfoScreen extends React.Component{
   }
   render(){
     return (<View>
-      <Button title="test" onPress={()=>{this.setState({show:true})}}/>
+      <Button title="info" onPress={()=>{this.setState({show:true})}}/>
       <Modal animationType="slide"
         height={500} width={0.9}
         modalTitle={<ModalTitle title={this.props.drugName}/>}

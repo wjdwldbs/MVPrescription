@@ -79,7 +79,7 @@ export default class AlertDetail extends Component {
 
     return(
       <View>
-        <MedInfoScreen drugName={"test"}/>
+        
 
         {this.props.data.map((med, i) => (
         <Swipeout key={i} right={[{
@@ -106,6 +106,7 @@ export default class AlertDetail extends Component {
               </Text>
               <Text style={{fontSize:16}}>{med.direction}</Text>
               {(med.note !== "") && <Text style={{fontSize:16, fontWeight: 'bold', color: '#8A0101'}}>* {med.note} *</Text>}
+              <MedInfoScreen drugName={med.name}/>
               </View>
             </TouchableOpacity>
 
