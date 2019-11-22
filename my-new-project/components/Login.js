@@ -149,7 +149,7 @@ export default class Login extends React.Component {
       </View>
       <View style={styles.body}>
         <Text style={styles.text}>Username:</Text>
-        <TextInput style={styles.input} autoCapitalize="none" placeholder="username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
+        <TextInput style={styles.input} autoCapitalize="none" placeholder="Username" onChangeText={(text) => this.setState({ loginUsername: text })}/>
 
         <Text style={styles.text}>Password:</Text>
         <TextInput style={styles.input} secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
@@ -179,7 +179,7 @@ export default class Login extends React.Component {
                 <Text>Close</Text>
               </TouchableHighlight>
 
-              <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>              
+              <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>
               <Text style={styles.text}>Email</Text>
               <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
               <Text style={styles.text}>Username</Text>
