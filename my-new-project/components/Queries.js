@@ -62,7 +62,8 @@ export default class Queries extends React.Component {
       medication: '',
       strength: '',
       direction: '',
-      note: '',
+      patientInfo: '',
+      notes:'',
       sideEffect: '',
       patientInfo: '',
       username: ''
@@ -142,7 +143,7 @@ export default class Queries extends React.Component {
     //.then(() => this.addMedication())
     .catch((err) => console.log(err))
   }
-
+//
   addMedication() {
 
     axios.post(`http://localhost:3000/mvp/drug`, {
@@ -151,12 +152,16 @@ export default class Queries extends React.Component {
       imgUrl: this.state.image,
       strength: this.state.strength,
       direction: this.state.direction,
-      note: this.state.patientInfo,
+      patientInfo: this.state.patientInfo,
+      note: this.state.notes,
       sideEffect: this.state.sideEffect,
       username: this.state.username
     })
+    .then(() => globalNum++)
+    .then(() => console.log(globalNum))
     .catch((err) => console.log(err))
   }
+
 
   render() {
 
@@ -182,13 +187,16 @@ export default class Queries extends React.Component {
         placeholder="Type Here"
         onChangeText={(text) => this.setState({direction: text})}
         />
-       {/* <TouchableHighlight onPress={() => this.getMedication(this.state.query)} title="Add Medication">
-         </TouchableHighlight>/> */}
-         <TouchableHighlight style={styles.button} onPress={() => this.getMedication(this.state.query)}>
+      <Text style={styles.text}>Notes</Text>
+      <TextInput
+      style={styles.input}
+        placeholder="Type Here"
+        onChangeText={(text) => this.setState({notes: text})}
+        />
+        <TouchableHighlight style={styles.button} onPress={() => this.getMedication(this.state.query)}>
            <Text style={styles.activetext}>
              Add Medication</Text>
          </TouchableHighlight>
-
     </View>
     );
   }
