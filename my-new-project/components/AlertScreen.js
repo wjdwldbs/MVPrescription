@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import AlertDetail from './AlertDetail.js';
 import axios from 'axios';
 //import dummy from '../dummyData.js';
@@ -12,7 +12,7 @@ const styles =StyleSheet.create({
     textAlign: 'center'
   },
   alert: {
-
+    
   }
 })
 
@@ -36,7 +36,7 @@ export default class AlertScreen extends Component {
     })
     .catch((err) => console.log(`unsuccessful get user med request ${err}`))
   }
-
+  
   deleteMed(_id){
     axios.delete(`http://localhost:3000/mvp/drugs/${_id}`)
     .then(() => {
@@ -50,12 +50,11 @@ export default class AlertScreen extends Component {
     this.getMedList(this.state.username)
   }
 
-  componentDidUpdate() {
-    if (1 !== 0){
+  componentDidUpdate(prevProps) {
+    if (prevProps.update !== this.props.update){
       this.getMedList(this.state.username)
     }
   }
-
 
   render(){
     return(
@@ -67,4 +66,4 @@ export default class AlertScreen extends Component {
     );
   }
 }
-
+//hello

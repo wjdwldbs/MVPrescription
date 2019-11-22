@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import axios from 'axios';
+import AlertScreen from './AlertScreen.js'
 
 import {
   Image,
@@ -15,6 +16,7 @@ import {
   Alert,
   TouchableHighlight
 } from 'react-native';
+import AlertDetail from './AlertDetail';
 const styles = StyleSheet.create({
   text: {
     fontSize: 30,
@@ -66,7 +68,8 @@ export default class Queries extends React.Component {
       notes:'',
       sideEffect: '',
       patientInfo: '',
-      username: ''
+      username: '',
+      update: false
     };
 
     this.getMedication = this.getMedication.bind(this)
