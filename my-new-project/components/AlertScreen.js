@@ -50,6 +50,12 @@ export default class AlertScreen extends Component {
     this.getMedList(this.state.username)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.update !== this.props.update){
+      this.getMedList(this.state.username)
+    }
+  }
+
   render(){
     return(
       <View>

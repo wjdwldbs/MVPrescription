@@ -1,6 +1,8 @@
 import React from 'react';
 import { ScrollView, Image, Text, View, StyleSheet } from 'react-native';
 import Modal, { ModalTitle, ModalContent } from 'react-native-modals';
+import axios from 'axios';
+
 
 export default class MedInfoScreen extends React.Component{
   constructor(props){
@@ -19,9 +21,12 @@ export default class MedInfoScreen extends React.Component{
 
     // fatal props : drugName, show
 
-    fetch('http://localhost:3000/drug/'+this.props.drugName)
+
+    fetch('http://localhost:3000/mvp/drug/'+this.props.drugName)
+      .then((data) => data.json())
       .then((data)=>{
-        var obj=data.json()[0];
+        console.log(data)
+        var obj=data[0];
         var temp={name:this.props.drugName};
         if(obj){
           temp.generic = obj.generic || "";
@@ -31,6 +36,7 @@ export default class MedInfoScreen extends React.Component{
         this.setState(temp);
       });
   }
+
   render(){
     return (
       <Modal animationType="slide"
@@ -39,9 +45,9 @@ export default class MedInfoScreen extends React.Component{
         visible={this.props.show}
         swipeDirection={['up', 'down']}
         swipeThreshold={100}
-        onSwipeOut={() => {this.setState({ show: false });
-        }}
-        onTouchOutside={()=>{this.setState({show:false})}}>
+        onSwipeOut={this.props.modalShow}
+        onTouchOutside={this.props.modalShow}
+        >
         <ModalContent>
           <ScrollView>
             <View style={{flex:1, flexDirection:'row'}}>
@@ -60,6 +66,7 @@ export default class MedInfoScreen extends React.Component{
     );
   }
 }
+
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1,

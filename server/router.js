@@ -47,10 +47,10 @@ router.delete('/drugs/:id',(req,res)=>{
 });
 
 router.get('/drug/:name',(req,res)=>{
-  drug.find({name:req.params.name},(err,data)=>{console.log(data); lazyFun1(err,data,res,200)});
+  drug.find({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 router.get('/drug/id/:id',(req,res)=>{
-  drug.find({_id:req.params.id},(err,data)=>{console.log(data); lazyFun1(err,data,res,200)});
+  drug.find({_id:req.params.id},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 router.post('/drug',(req,res)=>{
   drug.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
@@ -64,3 +64,7 @@ router.delete('/drug/:name',(req,res)=>{
 });
 
 module.exports = router;
+
+
+
+//
