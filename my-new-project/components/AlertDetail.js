@@ -22,11 +22,17 @@ export default class AlertDetail extends Component {
       chosenDate: new Date(),
       currentMed: '',
       alert: false,
-      show: false
+      show: false,
+      modalMed: ''
     }
 
     this.setDate = this.setDate.bind(this);
+    this.modalShow = this.modalShow.bind(this);
 
+  }
+
+  modalShow(){
+    this.setState({show: false})
   }
 
   setDate(newDate) {
@@ -94,9 +100,9 @@ export default class AlertDetail extends Component {
           onPress: () => { this.setState({modalVisible: true}) }
         }]} autoClose={true} backgroundColor= 'transparent'>
 
-          <View onPress={()=>{this.setState({currentMed: med._id}); console.log(this.state.currentMed); }} key={i}>
+          <View onPress={()=>{this.setState({currentMed: med._id})}} key={i}>
             <View style={{marginBottom: 15}}>
-            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}} onPress={() => this.setState({show: true})}>
+            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}} onPress={() => this.setState({show: true, modalMed: med.name})}>
               <Image style={{width: 100, height: 100}} source={{uri:med.imgUrl}}/>
               <View style={{width: 100, height: 100, flex:1, flexDirection: 'column'}}>
               <Text style={{fontSize: 18, fontWeight: 'bold', textDecorationLine:'underline', textTransform: 'uppercase'}}>
@@ -112,10 +118,8 @@ export default class AlertDetail extends Component {
             </TouchableHighlight> */}
             </View>
 
-            {this.state.show && <MedInfoScreen show={this.state.show} drugName={med.name}/>}
-
             <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
-              
+
               <View>
                 <TouchableHighlight style={{alignItems: 'center', backgroundColor: '#DDDDDD', padding: 10, marginTop: 30}}
                 onPress={() => this.setState({modalVisible: !this.state.modalVisible})} >
@@ -176,7 +180,7 @@ export default class AlertDetail extends Component {
           </View>
           </Swipeout>
         ))}
-
+        <MedInfoScreen modalShow={this.modalShow} show={this.state.show} drugName={this.state.modalMed}/>
       </View>
     );
   }
