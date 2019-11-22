@@ -33,6 +33,7 @@ export default class AlertDetail extends Component {
 
   modalShow(){
     this.setState({show: false})
+    console.log('forest')
   }
 
   setDate(newDate) {
@@ -102,7 +103,7 @@ export default class AlertDetail extends Component {
 
           <View onPress={()=>{this.setState({currentMed: med._id})}} key={i}>
             <View style={{marginBottom: 15}}>
-            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}} onPress={() => this.setState({show: true, modalMed: med.name})}>
+            <TouchableOpacity key={i} style={{flex:1, flexDirection: 'row', padding: 5}} onPress={() => {this.setState({modalMed: med.name, show: true}); console.log('hello')}}>
               <Image style={{width: 100, height: 100}} source={{uri:med.imgUrl}}/>
               <View style={{width: 100, height: 100, flex:1, flexDirection: 'column'}}>
               <Text style={{fontSize: 18, fontWeight: 'bold', textDecorationLine:'underline', textTransform: 'uppercase'}}>
@@ -180,13 +181,13 @@ export default class AlertDetail extends Component {
           </View>
           </Swipeout>
         ))}
+        
         <MedInfoScreen modalShow={this.modalShow} show={this.state.show} drugName={this.state.modalMed}/>
+        
       </View>
     );
   }
 }
-
-
               {/* <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
                 <Text style={{marginBottom: 0, fontSize: 35}}>Set Refill Med Reminder</Text>
 
