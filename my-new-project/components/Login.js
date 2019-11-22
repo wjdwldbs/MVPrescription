@@ -5,35 +5,35 @@ import Queries from './Queries.js'
 
 const styles =StyleSheet.create({
     text:{
-      fontSize:25,
+      fontSize:35,
       textDecorationLine: 'underline',
       paddingLeft:10
     },
     smallText:{
-      fontSize:20,
+      fontSize:25,
       fontStyle: 'italic',
       color: '#6e6e6e',
       paddingLeft:10
     },
     input:{
-      fontSize:22,
+      fontSize:30,
       paddingLeft:10,
       marginBottom:5
     },
     button: {
-      height:35,
-      width: 200,
+      height:50,
+      width: 250,
       backgroundColor: '#00aaff',
       borderRadius: 10,
       marginLeft:10,
       marginTop:10
     },
     activetext: {
-      marginTop:4,
+      marginTop:2,
       textAlignVertical:'center',
       textAlign:'center',
       color: '#ffffff',
-      fontSize:20,
+      fontSize:35,
       paddingLeft:10
     },
     toggle: {
@@ -153,6 +153,7 @@ export default class Login extends React.Component {
 
         <Text style={styles.text}>Password:</Text>
         <TextInput style={styles.input} secureTextEntry={this.state.passwordHidden} autoCapitalize="none" placeholder="Password" onChangeText={(text) => this.setState({ loginPassword: text })}/>
+
         <TouchableHighlight onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })} style= {styles.toggle}>
           <Text style={styles.toggleText}>{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
         </TouchableHighlight>
@@ -171,7 +172,7 @@ export default class Login extends React.Component {
             transparent={false}
             visible={this.state.signupVisible}
           >
-            <View>
+            <View >
               <TouchableHighlight
                 style={{marginTop: 50}}
                 onPress={() => this.setModalVisible(!this.state.signupVisible)}
@@ -180,20 +181,29 @@ export default class Login extends React.Component {
               </TouchableHighlight>
 
               <Text style={styles.text}>Please fill out the entire form to create an account.{'\n'}</Text>
-              <Text style={styles.text}>Email</Text>
-              <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
-              <Text style={styles.text}>Username</Text>
-              <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.text}>Email</Text>
+                <TextInput style={styles.input} placeholder="Email" onChangeText={(text) => this.setState({ email: text })}/>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.text}>Username</Text>
+                <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => this.setState({ signupUsername: text })}/>
+              </View>
+              <View style={{flexDirection: 'row'}}>
               <Text style={styles.text}>Password</Text>
               <TextInput style={styles.input} placeholder="Password" onChangeText={(text) => this.setState({ signupPassword: text })}/>
+              </View>
               <TouchableHighlight style={styles.toggle} onPress={() => this.setState({ passwordHidden: !this.state.passwordHidden })}>
                 <Text style={styles.toggleText} >{this.state.passwordHidden ? 'Show Password' : 'Hide Password'}</Text>
               </TouchableHighlight>
+              <View style={{flexDirection: 'row'}}>
               <Text style={styles.text}>First Name</Text>
               <TextInput style={styles.input} placeholder="First Name" onChangeText={(text) => this.setState({ firstName: text })}/>
+              </View>
+              <View style={{flexDirection: 'row'}}>
               <Text style={styles.text}>Last Name</Text>
               <TextInput style={styles.input} placeholder="Last Name" onChangeText={(text) => this.setState({ lastName: text })}/>
-
+              </View>
               <TouchableHighlight
                 onPress={this.createNewUser}
                 style= {styles.button}
