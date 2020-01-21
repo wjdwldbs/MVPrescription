@@ -34,7 +34,7 @@ You will need [Node.js](https://nodejs.org/en/) and [mongoDB](https://docs.mongo
 Get the code by cloning this repository using git:
 
 ```bash
-git clone https://github.com/wjdwldbs/MVPrescription.git
+$ git clone https://github.com/wjdwldbs/MVPrescription.git
 ```
 
 From within the root directory:
