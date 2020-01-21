@@ -1,14 +1,19 @@
 # MVPrescription
 
-> This repo is a prescription manager built with react-native, express server and mongoDB
+> This application is a prescription manager built with react-native, express server and mongoDB
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Demo](#demo)
+2. [Usage](#usage)
+3. [Requirements](#requirements)
+4. [Development](#development)
 
-## Usage
+## Demo <a name="demo"></a>
+
+[![demo](https://img.youtube.com/vi/6LinjARIe8I/maxresdefault.jpg)](https://www.youtube.com/embed/6LinjARIe8I)
+
+## Usage <a name="usage"></a>
 
 ### Server API
 
@@ -18,24 +23,37 @@
 - /mvp/drugs : Supporting GET & DELETE request. Getting or deletting all drug records related to a specified user. The username must be provided in params.
 - /mvp/drug : Supporting all CRUD requests. The drug name must be provided in params for GET, UPDATE and DELETE request. You can only post one item for each POST request
 
-## Requirements
+## Requirements <a name="requirements"></a>
 
-- Node 6.13.0
-- MongoDB
+You will need [Node.js](https://nodejs.org/en/) and [mongoDB](https://docs.mongodb.com/manual/administration/install-community/) installed on your system.
 
-## Development
+## Development <a name="development"></a>
 
-### Installing Dependencies and Start Server
+## Installation & Setup <a name="installation"></a>
+
+Get the code by cloning this repository using git:
+
+```bash
+git clone https://github.com/wjdwldbs/MVPrescription.git
+```
 
 From within the root directory:
 
-```sh
-npm install
-npm start
+Once cloned, open the terminal in the project directory and install dependencies locally using npm:
+
+```bash
+$ npm install
 ```
 
-For linux users:
+Seed data and start the server with:
 
-```sh
-sudo service mongod start
+```bash
+$ npm start
+```
+
+Start the app with:
+
+```bash
+$ cd my-new-project/
+$ npm start
 ```
