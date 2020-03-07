@@ -19,7 +19,7 @@ router.get('/users/all',(req,res)=>{
   user.find({},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 
-router.get('/user/:name',(req,res)=>{
+router.get('/user/:id',(req,res)=>{
   //CAUTION: this query will only return one user
   user.findOne({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
 });
@@ -27,9 +27,9 @@ router.post('/user',(req,res)=>{
   //CAUTION: this query will only insert one user
   user.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
 });
-router.delete('/user/:name',(req,res)=>{
-  //delete all users with given name and the drug belongs to that name
-  user.deleteMany({name:req.params.name},(err)=>{lazyFun2(err,res,203)});
+router.delete('/user/:id',(req,res)=>{
+  //delete a users with specified name and the prescriptions that belong to the user
+  user.deleteOne({id:req.params.id},(err)=>{lazyFun2(err,res,203)});
   drug.deleteMany({username:req.params.name},(err)=>{lazyFun2(err,res,203)});
 });
 
@@ -39,18 +39,18 @@ router.get('/drugs/:username',(req,res)=>{
   drug.find({username:req.params.username},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 // router.put('/drugs',(req,res)=>{});
-router.delete('/drugs/username/:username',(req,res)=>{
+router.delete('/drugs/:username',(req,res)=>{
   drug.deleteMany({username:req.params.username},(err)=>{lazyFun2(err,res,203)});
 });
-router.delete('/drugs/:id',(req,res)=>{
-  drug.deleteMany({_id:req.params.id},(err)=>{lazyFun2(err,res,203)});
-});
+// router.delete('/drugs/:id',(req,res)=>{
+//   drug.deleteMany({_id:req.params.id},(err)=>{lazyFun2(err,res,203)});
+// });
 
-router.get('/drug/:name',(req,res)=>{
-  drug.find({name:req.params.name},(err,data)=>{lazyFun1(err,data,res,200)});
+router.get('/drug/:id',(req,res)=>{
+  drug.find({id:req.params.id},(err,data)=>{lazyFun1(err,data,res,200)});
 });
-router.get('/drug/id/:id',(req,res)=>{
-  drug.find({_id:req.params.id},(err,data)=>{lazyFun1(err,data,res,200)});
+router.get('/drug/:id',(req,res)=>{
+  drug.find({id:req.params.id},(err,data)=>{lazyFun1(err,data,res,200)});
 });
 
 
@@ -58,12 +58,12 @@ router.post('/drug',(req,res)=>{
   drug.insertMany([req.body],(err)=>{lazyFun2(err,res,201)});
 });
 
-router.put('/drug/:name',(req,res)=>{
+router.put('/drug/:id',(req,res)=>{
   //can only update one. using unexisting name might cause error
-  drug.replaceOne({name:req.params.name},req.body,(err)=>{lazyFun2(err,res,202)});
+  drug.replaceOne({id:req.params.id},req.body,(err)=>{lazyFun2(err,res,202)});
 });
-router.delete('/drug/:name',(req,res)=>{
-  drug.deleteMany({name:req.params.name},(err)=>{lazyFun2(err,res,203)});
+router.delete('/drug/:id',(req,res)=>{
+  drug.deleteOne({id:req.params.id},(err)=>{lazyFun2(err,res,203)});
 });
 //
 module.exports = router;

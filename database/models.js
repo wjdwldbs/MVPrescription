@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
-    // id: Number,
+    id: Number,
     name: String
     //Todo?:other user profiles
   }, { collection: "User" }
 );
 const DrugSchema = mongoose.Schema({
-    // id: Number,
+    id: Number,
     name: { type: String, default: ()=>("") }, //name of the drug
 
     generic: { type: String, default: ()=>("") },
