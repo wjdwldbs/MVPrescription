@@ -13,23 +13,6 @@
 
 [![demo](https://img.youtube.com/vi/6LinjARIe8I/maxresdefault.jpg)](https://www.youtube.com/embed/6LinjARIe8I)
 
-## Usage <a name="usage"></a>
-
-### Server API
-
-| URL | Method | Success Response |
-| --- | --- | --- |
-| /mvp/users/all | GET | Returns a list of all users |
-| /mvp/user | POST | Create a new user |
-| /mvp/user/:id | GET | Returns a user |
-| /mvp/user/:id | DELETE | Deletes a user and all information regarding the user including prescriptions |
-| /mvp/drugs/:username | GET | Returns a user's list of prescriptions |
-| /mvp/drugs/:username | DELETE | Deletes all prescriptions of a user |
-| /mvp/drug | POST | Creates a prescription |
-| /mvp/drug/:id | GET | Returns a prescription |
-| /mvp/drug/:id | DELETE | Deletes a prescription |
-| /mvp/drug/:id | PUT | Updates a prescription |
-
 ## Requirements <a name="requirements"></a>
 
 You will need [Node.js](https://nodejs.org/en/) and [mongoDB](https://docs.mongodb.com/manual/administration/install-community/) installed on your system.
